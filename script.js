@@ -22,7 +22,7 @@ const mostrarCartas = async () => {
         let yes = 0;
         if(hab === "") yes = 1;
         else {
-            if(lvhab == -1) { if(tieneHabilidad(carta, hab) == 1) yes = 1; else return 0; }
+            if(lvhab == -1 || lvhab == "") { if(tieneHabilidad(carta, hab) == 1) yes = 1; else return 0; }
             else { if(tieneHabilidadEn(carta, hab, lvhab)) yes = 1; else return 0; }
         }
         if(query_nombre === "") yes = 1;

@@ -108,7 +108,14 @@
     <p>
         <label for="habilidad">Buscar habilidad por nombre o descripción</label><br>
         <input style="width:40%" id="habilidad">
-        <input type="number" id="hab_lv" min="-1" max="4" value="-1" onchange="mostrarCartas()">
+        <select name="" id="hab_lv" onchange="mostrarCartas()">
+            <option value="">Todo</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
     </p>
     <br><br><hr>
     <div class="row "id="display-data"></div>
