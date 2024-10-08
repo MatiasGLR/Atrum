@@ -1,6 +1,7 @@
 const apiEndPoint = "./dbjson.json";
 const display = document.querySelector("#display-data");
 const input = document.querySelector("#input");
+const edicion = document.querySelector("#edicion");
 
 const getData = async () => {
     const res = await fetch(apiEndPoint);
@@ -14,10 +15,14 @@ const mostrarCartas = async () => {
     const payload = await getData();
 
     let dataDisplay = payload.filter((carta) => {
-        if(query_nombre === "") { return carta }
-        else {
-            if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) {return carta}
+        let yes = 0;
+        if(query_nombre === "") yes = 1;
+        else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = 1; else return 0;
+        
+        if(edicion.value != "") {
+            if(carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = 1; else return 0;
         } 
+        if(yes == 1) return carta;
     }).map((object) => {
         const {id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
             hab0nombre,hab0desc,hab0color,hab0colort,hab0tipo,hab1nombre,hab1desc,hab1color,hab1colort,hab1tipo,
@@ -29,9 +34,14 @@ const mostrarCartas = async () => {
         else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br>`
         return `
         <div class="titulo">
-            <p><a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">`+ nombre +`</a></p>
+            <p>
+                <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
+                    <img style="width:150px" src="./Cartas/`+id+`.webp" alt=""><br>
+                    `+ nombre +`
+                </a>
+            </p>
             <div class="collapse" id="`+id+`">
-                <img style="width:200px" src="./Cartas/`+id+`.webp" alt=""><br>
+                
                 <b>Rareza:</b> <x class="`+rareza+`">` + rareza +`</x><br>
                 <b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
                 `+ tiendastring +`

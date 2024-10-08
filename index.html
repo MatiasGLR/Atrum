@@ -14,6 +14,20 @@
         .Bronce {
             background-color: #CE8946;
         }
+        .Plata {
+            background-color: #c4c4c4;
+        }
+        .Oro {
+            background-color: #f3e13a;
+        }
+        .Onix {
+            background-color: #303030;
+            color:white;
+        }
+        .Inobtenible {
+            background-color: #740000;
+            color:white;
+        }
 
         .Rojo {
             background-color: rgb(241, 140, 140);
@@ -37,10 +51,20 @@
 </head>
 <body>
     <br>
-    <input type="text" id="input" placeholder="Ingresar nombre" autofocus>
-    <select name="edicion" id="edicion">
-        <option value=""></option>
-    </select>
+    <p>
+        <label for="input">Ingresar nombre de la carta</label><br>
+        <input class="w-50" id="input" autofocus>
+    </p>
+    <p>
+        <label for="edicion">Seleccionar Colección</label><br>
+        <select class="w-50" name="edicion" id="edicion" onchange="mostrarCartas()">
+            <option value="">...</option>
+            <option value="Primera Edición">Primera Edición</option>
+            <option value="Exclusiva">Exclusivas</option>
+            <option value="Capitulo 1">Capitulo I</option>
+            <option value="Capitulo 2">Capitulo II</option>
+        </select>
+    </p>
     <br><br><hr>
     <div id="display-data"></div>
     <script src="./script.js"></script>
