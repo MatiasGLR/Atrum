@@ -9,10 +9,19 @@
         *{
             font-family: 'Tahoma';
             text-align: center;
+            margin: 0;
+            padding: 0;
+            font-size: 95%;
+            box-sizing: border-box;
+        }
+
+        .equipo_muestra {
+            font-size:90%;
         }
         
         .Bronce {
             background-color: #CE8946;
+            color:white;
         }
         .Plata {
             background-color: #c4c4c4;
@@ -20,15 +29,17 @@
         .Oro {
             background-color: #f3e13a;
         }
-        .Onix {
+        .Ónix {
             background-color: #303030;
-            color:white;
+            color:yellow;
         }
         .Inobtenible {
             background-color: #740000;
             color:white;
         }
-
+        .bordeado {
+            border-bottom: 3px solid white;
+        }
         .Rojo {
             background-color: rgb(241, 140, 140);
         }
@@ -49,7 +60,36 @@
         }
     </style>
 </head>
-<body>
+<body style="overflow-x: hidden;">
+    <div class="equipo_muestra row">
+        <div class="col-4 carta_equipo_1">
+            <span class="carta_equipo_titulo" id="carta_equipo_titulo_1"></span>
+            <span class="carta_equipo_imagen"></span>
+            <span class="carta_equipo_habilidad_4" id="carta_equipo_habilidad_1_4"></span>
+            <span class="carta_equipo_habilidad_3" id="carta_equipo_habilidad_1_3"></span>
+            <span class="carta_equipo_habilidad_2" id="carta_equipo_habilidad_1_2"></span>
+            <span class="carta_equipo_habilidad_1" id="carta_equipo_habilidad_1_1"></span>
+            <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_1_0"></span>
+        </div>
+        <div class="col-4 carta_equipo_2">
+            <span class="carta_equipo_titulo" id="carta_equipo_titulo_2"></span>
+            <span class="carta_equipo_imagen"></span>
+            <span class="carta_equipo_habilidad_4" id="carta_equipo_habilidad_2_4"></span>
+            <span class="carta_equipo_habilidad_3" id="carta_equipo_habilidad_2_3"></span>
+            <span class="carta_equipo_habilidad_2" id="carta_equipo_habilidad_2_2"></span>
+            <span class="carta_equipo_habilidad_1" id="carta_equipo_habilidad_2_1"></span>
+            <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_2_0"></span>
+        </div>
+        <div class="col-4 carta_equipo_3">
+            <span class="carta_equipo_titulo" id="carta_equipo_titulo_3"></span>
+            <span class="carta_equipo_imagen"></span>
+            <span class="carta_equipo_habilidad_4" id="carta_equipo_habilidad_3_4"></span>
+            <span class="carta_equipo_habilidad_3" id="carta_equipo_habilidad_3_3"></span>
+            <span class="carta_equipo_habilidad_2" id="carta_equipo_habilidad_3_2"></span>
+            <span class="carta_equipo_habilidad_1" id="carta_equipo_habilidad_3_1"></span>
+            <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_3_0"></span>
+        </div>
+    </div>
     <br>
     <p>
         <label for="input">Ingresar nombre de la carta</label><br>
@@ -65,8 +105,13 @@
             <option value="Capitulo 2">Capitulo II</option>
         </select>
     </p>
+    <p>
+        <label for="habilidad">Buscar habilidad por nombre o descripción</label><br>
+        <input style="width:40%" id="habilidad">
+        <input type="number" id="hab_lv" min="-1" max="4" value="-1" onchange="mostrarCartas()">
+    </p>
     <br><br><hr>
-    <div id="display-data"></div>
+    <div class="row "id="display-data"></div>
     <script src="./script.js"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -2,6 +2,8 @@ const apiEndPoint = "./dbjson.json";
 const display = document.querySelector("#display-data");
 const input = document.querySelector("#input");
 const edicion = document.querySelector("#edicion");
+const habilidad = document.querySelector("#habilidad");
+const hab_lv = document.querySelector("#hab_lv");
 
 const getData = async () => {
     const res = await fetch(apiEndPoint);
@@ -11,11 +13,18 @@ const getData = async () => {
 
 const mostrarCartas = async () => {
     let query_nombre = input.value;
+    let hab = habilidad.value;
+    let lvhab = hab_lv.value;
     
     const payload = await getData();
 
     let dataDisplay = payload.filter((carta) => {
         let yes = 0;
+        if(hab === "") yes = 1;
+        else {
+            if(lvhab == -1) { if(tieneHabilidad(carta, hab) == 1) yes = 1; else return 0; }
+            else { if(tieneHabilidadEn(carta, hab, lvhab)) yes = 1; else return 0; }
+        }
         if(query_nombre === "") yes = 1;
         else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = 1; else return 0;
         
@@ -33,7 +42,7 @@ const mostrarCartas = async () => {
         if(tienda === "") { tiendastring = ""}
         else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br>`
         return `
-        <div class="titulo">
+        <div class="titulo col-md-3">
             <p>
                 <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
                     <img style="width:150px" src="./Cartas/`+id+`.webp" alt=""><br>
@@ -50,16 +59,20 @@ const mostrarCartas = async () => {
                 <b>Especialidad:</b> <x class="`+espcolor+`">`+ especialidad +`</x><br>
                 <br>
                 <b>Habilidades</b>
-                <div class="`+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`) `+hab4colort+`<br>
+                <div class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
                 `+hab4desc+`</div>
-                <div class="`+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`) `+hab3colort+`<br>
+                <div class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
                 `+hab3desc+`</div>
-                <div class="`+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`) `+hab2colort+`<br>
+                <div class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
                 `+hab2desc+`</div>
-                <div class="`+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`) `+hab1colort+`<br>
+                <div class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
                 `+hab1desc+`</div>
-                <div class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`) `+hab0colort+`<br>
+                <div class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
                 `+hab0desc+`</div>
+                <br>
+                <button class="btn btn-primary">1</button>
+                <button class="btn btn-primary">2</button>
+                <button class="btn btn-primary">3</button>
             </div>
             <hr>
             </p>
@@ -72,6 +85,28 @@ const mostrarCartas = async () => {
 
 mostrarCartas();
 
+habilidad.addEventListener("input", () => {
+    mostrarCartas();
+});
+
 input.addEventListener("input", () => {
     mostrarCartas();
 });
+
+function tieneHabilidad(carta, hab) {
+    if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if((carta.hab1nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab1desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    return 0;
+}
+
+function tieneHabilidadEn(carta, hab, slot){
+    if(slot == 0) { if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1; } 
+    else if(slot == 1) { if((carta.hab1nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab1desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 2) { if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 3) { if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 4) { if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    return 0;
+}
