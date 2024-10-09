@@ -29,7 +29,10 @@ const mostrarCartas = async () => {
         else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = 1; else return 0;
         
         if(edicion.value != "") {
-            if(carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = 1; else return 0;
+            if(edicion.value == "Inicio") {
+                if(cajaInicio(carta.id) == 1) yes = 1; else return 0;
+            }
+            else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase())) yes = 1; else return 0;
         } 
         if(yes == 1) return carta;
     }).map((object) => {
@@ -108,5 +111,16 @@ function tieneHabilidadEn(carta, hab, slot){
     else if(slot == 2) { if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
     else if(slot == 3) { if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
     else if(slot == 4) { if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    return 0;
+}
+
+function cajaInicio(carta) {
+    if(carta == "ragadaskazotedeyermos") return 1;
+    else if(carta == "gurlagcontemplatumbas") return 1;
+    else if(carta == "lailasollozoimpuro") return 1;
+    else if(carta == "butchorcortecuerno") return 1;
+    else if(carta == "alisonhalovenganza") return 1;
+    else if(carta == "gorthinvocaplagas") return 1;
+    else if(carta == "murtaumbratenebra") return 1;
     return 0;
 }
