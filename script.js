@@ -36,11 +36,11 @@ const mostrarCartas = async () => {
         const {id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
             hab0nombre,hab0desc,hab0color,hab0colort,hab0tipo,hab1nombre,hab1desc,hab1color,hab1colort,hab1tipo,
             hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
-            hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor
+            hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor,locacion,ubicacion
         } = object;
         let tiendastring;
         if(tienda === "") { tiendastring = ""}
-        else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br>`
+        else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br><b>Localidad:</b>  <a href="`+ubicacion+`">`+ locacion +`</a><br>`
         return `
         <div class="titulo col-md-3">
             <p>

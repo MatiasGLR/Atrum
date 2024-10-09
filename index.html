@@ -97,13 +97,22 @@
     </p>
     <p>
         <label for="edicion">Seleccionar Colección</label><br>
-        <select class="w-50" name="edicion" id="edicion" onchange="mostrarCartas()">
+        <select style="width:40%" name="edicion" id="edicion" onchange="mostrarCartas()">
             <option value="">...</option>
+            <option value="Inicio">Paquete de Inicio</option>
             <option value="Primera Edición">Primera Edición</option>
-            <option value="Exclusiva">Exclusivas</option>
-            <option value="Capitulo 1">Capitulo 1</option>
-            <option value="Capitulo 2">Capitulo 2</option>
-            <option value="Capitulo 2">Capitulo 1 y 2</option>
+            <option value="Exclusiva">Exclusivas de Tienda</option>
+            <option value="Capítulo 1">Capitulo 1</option>
+            <option value="Capítulo 2">Capitulo 2</option>
+            <option value="Capítulo 1 y Capítulo 2">Capitulo 1 y Capítulo 2</option>
+        </select>
+        <select name="" id="rareza" onchange="mostrarCartas()">
+            <option value="">Todo</option>
+            <option value="Bronce">Bronce</option>
+            <option value="Plata">Plata</option>
+            <option value="Oro">Oro</option>
+            <option value="Ónix">Ónix</option>
+            <option value="Inobtenible">Inobtenible</option>
         </select>
     </p>
     <p>
