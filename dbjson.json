@@ -1879,4 +1879,37 @@
         "hab0color": "Verde", "hab0colort": "Zombie",
         "hab0tipo": "Defensa"
     }
+	,
+	{
+        "id": "patrickgraznidoletal",
+        "nombre": "Patrick Graznidoletal",
+        "rareza": "Inobtenible",
+        "coleccion": "Personalizadas",
+        "estado": "No permitida",
+        "tienda": "",
+        "numero": "2",
+        "numerode": "X",
+        "artista": "IA",
+        "especialidad": "Zombie", "espcolor": "Verde",
+        "hab4nombre": "Pandemonium",
+        "hab4desc": "Haz 4 de daño táctico. Haz 1 de daño adicional por cada esbirro que explotes adicional",
+        "hab4color": "Rojo", "hab4colort": "Caídos",
+        "hab4tipo": "Ataque",
+        "hab3nombre": "Muro de Cadaveres",
+        "hab3desc": "Preveen 4 de un Poder de Ataque",
+        "hab3color": "Verde", "hab3colort": "Zombie",
+        "hab3tipo": "Defensa",
+        "hab2nombre": "Lobotomia Premortem",
+        "hab2desc": "Mira la mano de tu oponente. Roba 1 de sus esbirros.",
+        "hab2color": "Verde", "hab2colort": "Zombie",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Caceria Salvaje",
+        "hab1desc": "Explota 1 esbirro del oponente. Disminuye 2 tu resistencia.",
+        "hab1color": "Violeta", "hab1colort": "Bestia",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Perdida de Plumas",
+        "hab0desc": "Este poder no puede repetirse en la cadena. Si recibiste daño este turno, agota un esbirro del oponente.",
+        "hab0color": "Blanco", "hab0colort": "Cualquiera",
+        "hab0tipo": "Táctico"
+	}
 ]
