@@ -28,6 +28,7 @@ const mostrarCartas = async () => {
         if(query_nombre === "") yes = 1;
         else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = 1; else return 0;
         
+        if(carta.coleccion == "Personalizadas") if(edicion.value != "Personalizadas") return 0;
         if(edicion.value != "") {
             if(edicion.value == "Inicio") {
                 if(cajaInicio(carta.id) == 1) yes = 1; else return 0;
@@ -115,12 +116,8 @@ function tieneHabilidadEn(carta, hab, slot){
 }
 
 function cajaInicio(carta) {
-    if(carta == "ragadaskazotedeyermos") return 1;
-    else if(carta == "gurlagcontemplatumbas") return 1;
-    else if(carta == "lailasollozoimpuro") return 1;
-    else if(carta == "butchorcortecuerno") return 1;
-    else if(carta == "alisonhalovenganza") return 1;
-    else if(carta == "gorthinvocaplagas") return 1;
-    else if(carta == "murtaumbratenebra") return 1;
-    return 0;
+    switch (carta) {
+        case "ragadaskazotedeyermos","gurlagcontemplatumbas","lailasollozoimpuro","butchorcortecuerno","alisonhalovenganza","gorthinvocaplagas","murtaumbratenebra": return 1;
+        default: return 0;
+    }
 }
