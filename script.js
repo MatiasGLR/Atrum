@@ -145,7 +145,7 @@ document.querySelector('#boton_arriba_subir').addEventListener("click", () => {
     return 1;
 });
 document.querySelector('#boton_abajo_bajar').addEventListener("click", () => {
-    var_vidaAbajo = Math._max(var_vidaAbajo-1,0);
+    var_vidaAbajo = Math.max(var_vidaAbajo-1,0);
     vida_abajo.innerHTML = ""+var_vidaAbajo+"";
     return 1;
 });
