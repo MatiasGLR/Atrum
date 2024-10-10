@@ -1850,7 +1850,7 @@
 	{
         "id": "michiusgarrahiriente",
         "nombre": "Michius Garrahiriente",
-        "rareza": "Inobtenible",
+        "rareza": "Carta de Gabriel",
         "coleccion": "Personalizadas",
         "estado": "No permitida",
         "tienda": "",
@@ -1874,16 +1874,16 @@
         "hab1desc": "Puedes descartar 1 Esbirro de cualquier tipo para lanzar tu próximo Poder.",
         "hab1color": "Blanco", "hab1colort": "Cualquiera",
         "hab1tipo": "Táctico",
-        "hab0nombre": "Muro de Cadaveres",
-        "hab0desc": "Prevén hasta 2 de daño de un Poder de Ataque.",
+        "hab0nombre": "Hambre Insaciable",
+        "hab0desc": "Haz 2 de daño a un oponente.",
         "hab0color": "Verde", "hab0colort": "Zombie",
-        "hab0tipo": "Defensa"
+        "hab0tipo": "Ataque"
     }
 	,
 	{
         "id": "patrickgraznidoletal",
         "nombre": "Patrick Graznidoletal",
-        "rareza": "Inobtenible",
+        "rareza": "Carta de Ale chikito",
         "coleccion": "Personalizadas",
         "estado": "No permitida",
         "tienda": "",
@@ -1916,7 +1916,7 @@
 	{
         "id": "dainarbuscaextincion",
         "nombre": "Dainar Buscaextincion",
-        "rareza": "Inobtenible",
+        "rareza": "Carta de Green",
         "coleccion": "Personalizadas",
         "estado": "No permitida",
         "tienda": "",
@@ -1949,7 +1949,7 @@
 	{
         "id": "dominicreyinmortal",
         "nombre": "Dominic Reyinmortal",
-        "rareza": "Inobtenible",
+        "rareza": "Carta de Ale",
         "coleccion": "Personalizadas",
         "estado": "No permitida",
         "tienda": "",
