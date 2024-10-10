@@ -129,6 +129,7 @@ function cajaInicio(uid) {
 }
 
 const vida_arriba = document.querySelector("#vida_arriba");
+const vida_abajo = document.querySelector("#vida_abajo");
 
 let var_vidaArriba = 10;
 let var_vidaAbajo = 10;
