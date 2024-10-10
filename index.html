@@ -61,6 +61,39 @@
     </style>
 </head>
 <body style="overflow-x: hidden;">
+    <style>
+        #barra_vida_arriba {
+            position: fixed;
+            top:0%;
+            width:100%;
+            text-align: center;
+        }
+        .vida_boton:hover {
+            cursor: pointer;
+        }
+        #barra_vida_abajo {
+            position: fixed;
+            bottom:0%;
+            width:100%;
+        }
+        .vida_boton:hover {
+            cursor: pointer;
+        }
+    </style>
+    <div id="barra_vida_arriba">
+        <div class="row">
+            <button id="boton_arriba_bajar" style="background-color: rgb(238, 135, 135); font-size:180%; height:40px" class="col-4 vida_boton">-</button>
+            <div id="vida_arriba" style="background-color: rgb(245, 243, 130); font-size:180%; height:40px" class="col-4">10</div>
+            <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:180%; height:40px" class="col-4 vida_boton">+</button>
+        </div>
+    </div>
+    <div id="barra_vida_abajo">
+        <div class="row">
+            <button id="boton_abajo_bajar" style="background-color: rgb(238, 135, 135); font-size:180%; height:40px" class="col-4 vida_boton">-</button>
+            <div id="vida_abajo" style="background-color: rgb(245, 243, 130); font-size:180%; height:40px" class="col-4">10</div>
+            <button id="boton_abajo_subir" style="background-color: rgb(157, 245, 130); font-size:180%; height:40px" class="col-4 vida_boton">+</button>
+        </div>
+    </div>
     <div class="equipo_muestra row">
         <div class="col-4 carta_equipo_1">
             <span class="carta_equipo_titulo" id="carta_equipo_titulo_1"></span>
@@ -90,7 +123,7 @@
             <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_3_0"></span>
         </div>
     </div>
-    <br>
+    <br><br><br><br>
     <p>
         <label for="input">Ingresar nombre de la carta</label><br>
         <input class="w-50" id="input" autofocus>

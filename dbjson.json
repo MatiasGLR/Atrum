@@ -1,5 +1,6 @@
 [
     {
+        "uid": 1,
         "id": "ragadaskazotedeyermos",
         "nombre": "Ragadask Azotedeyermos",
         "rareza": "Bronce",
@@ -13,9 +14,9 @@
         "especialidad": "Caídos",
         "espcolor": "Rojo",
         "hab0nombre": "Carga Heroica",
-        "hab0desc": "Haz 2 de daño a un oponente",
+        "hab0desc": "Haz 2 de daño a un oponente.",
         "hab0color": "Rojo",
-        "hab0colort": "Caido",
+        "hab0colort": "Caído",
         "hab0tipo": "Ataque",
         "hab1nombre": "Torreon Viviente",
         "hab1desc": "Prevén hasta 2 de daño de un Poder de Ataque",
@@ -25,7 +26,7 @@
         "hab2nombre": "Relatos de Leyenda",
         "hab2desc": "Muestra tu mano. Haz 4 de daño a un oponente si tienes al menos un Caído en ella.",
         "hab2color": "Rojo",
-        "hab2colort": "Caido",
+        "hab2colort": "Caído",
         "hab2tipo": "Táctico",
         "hab3nombre": "Potenciar Impacto",
         "hab3desc": "Refuerza 3 un Poder de Ataque.",
@@ -39,6 +40,7 @@
         "hab4tipo": "Ataque"
     },
     {
+        "uid": 2,
         "id": "gurlagcontemplatumbas",
         "nombre": "Gurlag Contemplatumbas",
         "rareza": "Bronce",
@@ -78,6 +80,7 @@
         "hab4tipo": "Táctico"
     },
     {
+        "uid": 3,
         "id": "lailasollozoimpuro",
         "nombre": "Laila Sollozoimpuro",
         "rareza": "Bronce",
@@ -117,6 +120,7 @@
         "hab4tipo": "Táctico"
     },
 	{
+        "uid": 4,
         "id": "butchorcortecuerno",
         "nombre": "Butchor Cortecuerno",
         "rareza": "Plata",
@@ -156,6 +160,7 @@
         "hab4tipo": "Táctico"
     },
 	{
+        "uid": 5,
         "id": "alisonhalovenganza",
         "nombre": "Alison Halovenganza",
         "rareza": "Plata",
@@ -171,7 +176,7 @@
         "hab0nombre": "Recluta Inspiradora",
         "hab0desc": "Intercambia hasta 2 Esbirros de tu mano con Caídos que haya en cualquier Altar.",
         "hab0color": "Rojo",
-        "hab0colort": "Caido",
+        "hab0colort": "Caído",
         "hab0tipo": "Táctico",
         "hab1nombre": "Proyectil Espiritual",
         "hab1desc": "Haz 1 de daño a un oponente.",
@@ -195,6 +200,7 @@
         "hab4tipo": "Defensa"
     },
 	{
+        "uid": 6,
         "id": "gorthinvocaplagas",
         "nombre": "Gorth Invocaplagas",
         "rareza": "Bronce",
@@ -234,6 +240,7 @@
         "hab4tipo": "Defensa"
     },
 	{
+        "uid": 7,
         "id": "nuritespantoagudo",
         "nombre": "Nurit Espantoagudo",
         "rareza": "Plata",
@@ -273,6 +280,7 @@
         "hab4tipo": "Táctico"
     },
 	{
+        "uid": 8,
         "id": "meboraarreamuertos",
         "nombre": "Mebora Arreamuertos",
         "rareza": "Bronce",
@@ -312,6 +320,7 @@
         "hab4tipo": "Táctico"
     },
 	{
+        "uid": 9,
         "id": "durnikmascaramacabra",
         "nombre": "Durnik Mascaramacabra",
         "rareza": "Plata",
@@ -345,6 +354,7 @@
         "hab4tipo": "Ataque"
     },
 	{
+        "uid": 10,
         "id": "thordenbarbatormenta",
         "nombre": "Thorden Barbatormenta",
         "rareza": "Bronce",
@@ -379,6 +389,7 @@
     }
     ,
 	{
+        "uid": 11,
         "id": "balberanegocautivo",
         "nombre": "Balberan Egocautivo",
         "rareza": "Oro",
@@ -413,6 +424,7 @@
     }
     ,
 	{
+        "uid": 12,
         "id": "antagornreydejaurias",
         "nombre": "Antagorn Reydejaurias",
         "rareza": "Oro",
@@ -447,6 +459,7 @@
     }
     ,
 	{
+        "uid": 13,
         "id": "lupinnatoquemaldito",
         "nombre": "Lupinna Toquemaldito",
         "rareza": "Oro",
@@ -481,6 +494,7 @@
     }
     ,
 	{
+        "uid": 14,
         "id": "muradbloqueasueños",
         "nombre": "Murad Bloqueasueños",
         "rareza": "Bronce",
@@ -515,6 +529,7 @@
     }
     ,
 	{
+        "uid": 15,
         "id": "flongrostropunzante",
         "nombre": "Flong Rostropunzante",
         "rareza": "Bronce",
@@ -549,6 +564,7 @@
     }
     ,
 	{
+        "uid": 16,
         "id": "ogmarbrazoderoble",
         "nombre": "Ogmar Brazoderoble",
         "rareza": "Oro",
@@ -583,6 +599,7 @@
     }
     ,
 	{
+        "uid": 17,
         "id": "sortumoroxidado",
         "nombre": "Sortum Oroxidado",
         "rareza": "Plata",
@@ -604,7 +621,7 @@
         "hab1tipo": "Defensa",
         "hab2nombre": "Carga Heroica",
         "hab2desc": "Haz 3 de daño a un oponente.",
-        "hab2color": "Rojo", "hab2colort": "Caido",
+        "hab2color": "Rojo", "hab2colort": "Caído",
         "hab2tipo": "Ataque",
         "hab3nombre": "Mecanizar",
         "hab3desc": "Todos los Esbirros en tu mano se consideran Golems hasta el final de este turno.",
@@ -617,6 +634,7 @@
     }
     ,
 	{
+        "uid": 18,
         "id": "helzaregentedespinas",
         "nombre": "Helza Regentedespinas",
         "rareza": "Oro",
@@ -651,6 +669,7 @@
     }
     ,
 	{
+        "uid": 19,
         "id": "dagoncantodelcaos",
         "nombre": "Dagon Cantodelcaos",
         "rareza": "Oro",
@@ -685,6 +704,7 @@
     }
     ,
 	{
+        "uid": 20,
         "id": "valkocarneviva",
         "nombre": "Valko Carneviva",
         "rareza": "Ónix",
@@ -719,6 +739,7 @@
     }
     ,
 	{
+        "uid": 21,
         "id": "zelencolectacraneos",
         "nombre": "Zelen Colectacraneos",
         "rareza": "Ónix",
@@ -753,6 +774,7 @@
     }
     ,
 	{
+        "uid": 22,
         "id": "merenithraicesalvajes",
         "nombre": "Merenith Raicesalvajes",
         "rareza": "Plata",
@@ -787,6 +809,7 @@
     }
     ,
 	{
+        "uid": 23,
         "id": "xessagocopallameante",
         "nombre": "Xessago Copallameante",
         "rareza": "Bronce",
@@ -821,6 +844,7 @@
     }
     ,
 	{
+        "uid": 24,
         "id": "ernicmuerteroja",
         "nombre": "Ernic Muerteroja",
         "rareza": "Ónix",
@@ -855,6 +879,7 @@
     }
     ,
 	{
+        "uid": 25,
         "id": "hermonttridentedemente",
         "nombre": "Hermont Tridentedemente",
         "rareza": "Ónix",
@@ -889,6 +914,7 @@
     }
     ,
 	{
+        "uid": 26,
         "id": "ignoirivusurpatronos",
         "nombre": "Ignoir IV Usurpatronos",
         "rareza": "Plata",
@@ -923,6 +949,7 @@
     }
     ,
 	{
+        "uid": 27,
         "id": "trunfriogélido",
         "nombre": "Trun Friogélido",
         "rareza": "Bronce",
@@ -957,6 +984,7 @@
     }
     ,
 	{
+        "uid": 28,
         "id": "crespintrepaciénagas",
         "nombre": "Crespin Trepaciénagas",
         "rareza": "Plata",
@@ -991,6 +1019,7 @@
     }
     ,
 	{
+        "uid": 29,
         "id": "kilimancolosocalcáreo",
         "nombre": "Kiliman Colosocalcáreo",
         "rareza": "Ónix",
@@ -1025,6 +1054,7 @@
     }
     ,
 	{
+        "uid": 30,
         "id": "carmhagritodehorrores",
         "nombre": "Carmha Gritodehorrores",
         "rareza": "Oro",
@@ -1059,6 +1089,7 @@
     }
     ,
 	{
+        "uid": 31,
         "id": "garganosfiestadesangre",
         "nombre": "Garganos Fiestadesangre",
         "rareza": "Ónix",
@@ -1094,6 +1125,7 @@
     }
     ,
 	{
+        "uid": 32,
         "id": "numarguardianestelar",
         "nombre": "Numar Guardianestelar",
         "rareza": "Inobtenible",
@@ -1129,6 +1161,7 @@
     }
     ,
 	{
+        "uid": 33,
         "id": "maghnarasacofortuna",
         "nombre": "Maghnara Sacofortuna",
         "rareza": "Inobtenible",
@@ -1164,6 +1197,7 @@
     }
     ,
 	{
+        "uid": 34,
         "id": "frintzelfuriaescarlata",
         "nombre": "Frintzel Furiaescarlata",
         "rareza": "Ónix",
@@ -1199,6 +1233,7 @@
     }
     ,
 	{
+        "uid": 35,
         "id": "fessterfurianevada",
         "nombre": "Fesster Furianevada",
         "rareza": "Ónix",
@@ -1234,6 +1269,7 @@
     }
     ,
 	{
+        "uid": 36,
         "id": "zethbosquedespinas",
         "nombre": "Zeth Bosquedespinas",
         "rareza": "Ónix",
@@ -1269,6 +1305,7 @@
     }
     ,
 	{
+        "uid": 37,
         "id": "keswithalmademencia",
         "nombre": "Keswith Almademencia",
         "rareza": "Ónix",
@@ -1304,6 +1341,7 @@
     }
     ,
 	{
+        "uid": 38,
         "id": "morguscrestacero",
         "nombre": "Morgus Crestacero",
         "rareza": "Ónix",
@@ -1326,7 +1364,7 @@
         "hab3tipo": "Táctico",
         "hab2nombre": "Guardaespaldas Experto",
         "hab2desc": "Prevén hasta 3 de daño de un Poder de Ataque.",
-        "hab2color": "Rojo", "hab2colort": "Caido",
+        "hab2color": "Rojo", "hab2colort": "Caído",
         "hab2tipo": "Defensa",
         "hab1nombre": "Geiser de Cuerpos",
         "hab1desc": "Roba 1 Esbirro del tope de la Fosa.",
@@ -1339,6 +1377,7 @@
     }
     ,
 	{
+        "uid": 39,
         "id": "gerkoforjaengranaje",
         "nombre": "Gerko Forjaengranaje",
         "rareza": "Ónix",
@@ -1374,6 +1413,7 @@
     }
     ,
 	{
+        "uid": 40,
         "id": "escandriadulcematanza",
         "nombre": "Escandria Dulcematanza",
         "rareza": "Ónix",
@@ -1404,11 +1444,12 @@
         "hab1tipo": "Táctico",
         "hab0nombre": "Carga Heroica",
         "hab0desc": "Haz 2 de daño a un oponente.",
-        "hab0color": "Rojo", "hab0colort": "Caido",
+        "hab0color": "Rojo", "hab0colort": "Caído",
         "hab0tipo": "Ataque"
     }
     ,
 	{
+        "uid": 41,
         "id": "langskarexploramundos",
         "nombre": "Langskar Exploramundos",
         "rareza": "Ónix",
@@ -1444,6 +1485,7 @@
     }
     ,
 	{
+        "uid": 42,
         "id": "motleryghastlercasavapor",
         "nombre": "Motler y Ghastler Casavapor",
         "rareza": "Ónix",
@@ -1479,6 +1521,7 @@
     }
     ,
 	{
+        "uid": 43,
         "id": "valekllamadraconia",
         "nombre": "Valek Llamadraconia",
         "rareza": "Ónix",
@@ -1514,6 +1557,7 @@
     }
     ,
 	{
+        "uid": 44,
         "id": "omerlathotglifosdelcaos",
         "nombre": "Omerlathot Glifosdelcaos",
         "rareza": "Ónix",
@@ -1549,6 +1593,7 @@
     }
     ,
 	{
+        "uid": 45,
         "id": "castellarcofreabisal",
         "nombre": "Castellar Cofreabisal",
         "rareza": "Ónix",
@@ -1584,6 +1629,7 @@
     }
     ,
 	{
+        "uid": 46,
         "id": "goltardientehiriente",
         "nombre": "Goltar Dientehiriente",
         "rareza": "Oro",
@@ -1617,6 +1663,7 @@
     }
     ,
 	{
+        "uid": 47,
         "id": "shangrilabsorbealmas",
         "nombre": "Shangril Absorbealmas",
         "rareza": "Oro",
@@ -1650,6 +1697,7 @@
     }
     ,
 	{
+        "uid": 48,
         "id": "rittzerrastreatumbas",
         "nombre": "Rittzer Rastreatumbas",
         "rareza": "Bronce",
@@ -1683,6 +1731,7 @@
     }
     ,
 	{
+        "uid": 49,
         "id": "xanararugidoterrible",
         "nombre": "Xanara Rugidoterrible",
         "rareza": "Plata",
@@ -1716,6 +1765,7 @@
     }
     ,
 	{
+        "uid": 50,
         "id": "palderonvahotoxina",
         "nombre": "Palderon Vahotoxina",
         "rareza": "Ónix",
@@ -1749,6 +1799,7 @@
     }
     ,
 	{
+        "uid": 51,
         "id": "urkhaflagelodestepas",
         "nombre": "Urkha Flagelodestepas",
         "rareza": "Plata",
@@ -1782,6 +1833,7 @@
     }
     ,
 	{
+        "uid": 52,
         "id": "balaksombraesperanza",
         "nombre": "Balak Sombraesperanza",
         "rareza": "Ónix",
@@ -1815,6 +1867,7 @@
     }
     ,
 	{
+        "uid": 53,
         "id": "zarkhorsierpemisterio",
         "nombre": "Zark'hor Sierpemisterio",
         "rareza": "Oro",
@@ -1848,6 +1901,7 @@
     }
     ,
 	{
+        "uid": 54,
         "id": "onigotterrorserial",
         "nombre": "Onigot Terrorserial",
         "rareza": "Oro",
@@ -1881,6 +1935,245 @@
     }
     ,
 	{
+        "uid": 55,
+        "id": "yoregaizancadamantis",
+        "nombre": "Yoregai Zancadamantis",
+        "rareza": "Bronce",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "10",
+        "numerode": "16",
+        "artista": "Nicolás Urse",
+        "especialidad": "Zombie", "espcolor": "Verde",
+        "hab4nombre": "Contrato Mercenario",
+        "hab4desc": "Haz 4 de daño a un oponente.",
+        "hab4color": "Rojo", "hab4colort": "Caído",
+        "hab4tipo": "Táctico",
+        "hab3nombre": "Garras y Colmillos",
+        "hab3desc": "Haz 4 de daño a un oponente.",
+        "hab3color": "Violeta", "hab3colort": "Bestia",
+        "hab3tipo": "Ataque",
+        "hab2nombre": "Deja Vu",
+        "hab2desc": "Si tienes al menos un Zombie en tu Altar, elige hasta 2 Esbirros en el Altar de un participante y devuélvelos a su mano. Explota un Zombie en tu Altar después.",
+        "hab2color": "Verde", "hab2colort": "Zombie",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Potenciar Impacto",
+        "hab1desc": "Refuerza 1 un Poder de Ataque.",
+        "hab1color": "Blanco", "hab1colort": "Cualquiera",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Muro de Cadaveres",
+        "hab0desc": "Prevén hasta 2 de daño de un Poder de Ataque.",
+        "hab0color": "Verde", "hab0colort": "Zombie",
+        "hab0tipo": "Defensa"
+    }
+    ,
+	{
+        "uid": 56,
+        "id": "niktozmandodemónico",
+        "nombre": "Niktoz Mandodemónico",
+        "rareza": "Plata",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "11",
+        "numerode": "16",
+        "artista": "Nicolás Urse",
+        "especialidad": "Zombie", "espcolor": "Verde",
+        "hab4nombre": "Garras y Colmillos",
+        "hab4desc": "Haz 5 de daño a un oponente.",
+        "hab4color": "Violeta", "hab4colort": "Bestia",
+        "hab4tipo": "Ataque",
+        "hab3nombre": "Ciclo Antinatural",
+        "hab3desc": "Este poder sólo se puede pagar Explotando tus Esbirros. Gana 2 de resistencia por cada Golem Explotado para pagar el coste de este Poder.",
+        "hab3color": "Azul", "hab3colort": "Golem",
+        "hab3tipo": "Táctico",
+        "hab2nombre": "Geiser de Cuerpos",
+        "hab2desc": "Roba 2 Esbirros del tope de la Fosa.",
+        "hab2color": "Blanco", "hab2colort": "Cualquiera",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Fractura Mental",
+        "hab1desc": "Mira la mano de un oponente. Elige 1 de sus Esbirros e intercambialo con 1 de su Altar.",
+        "hab1color": "Verde", "hab1colort": "Zombie",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Muro de Cadaveres",
+        "hab0desc": "Prevén hasta 2 de daño de un Poder de Ataque.",
+        "hab0color": "Verde", "hab0colort": "Zombie",
+        "hab0tipo": "Defensa"
+    }
+    ,
+	{
+        "uid": 57,
+        "id": "olbertpsiquesufriente",
+        "nombre": "Olbert Psiquesufriente",
+        "rareza": "Bronce",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "12",
+        "numerode": "16",
+        "artista": "Nicolás Urse",
+        "especialidad": "Caídos", "espcolor": "Rojo",
+        "hab4nombre": "Territorio Devastado",
+        "hab4desc": "Revela 6 Esbirros del tope de la Fosa. Explota 1 Esbirro de un oponente por cada Caído revelado. Devuelve los Esbirros revelados a la Fosa y barájala.",
+        "hab4color": "Rojo", "hab4colort": "Caído",
+        "hab4tipo": "Táctico",
+        "hab3nombre": "Escudo de Energia",
+        "hab3desc": "Prevén hasta 3 de daño de un Poder de Ataque.",
+        "hab3color": "Blanco", "hab3colort": "Cualquiera",
+        "hab3tipo": "Defensa",
+        "hab2nombre": "Lobotomia Premortem",
+        "hab2desc": "Mira la mano de un oponente. Elige y roba 1 de sus Esbirros.",
+        "hab2color": "Verde", "hab2colort": "Zombie",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Retaliacion",
+        "hab1desc": "Si este turno Reforzaste un Poder de Defensa, haz 6 de daño a un oponente por cada punto que le hayas Reforzado a esa Defensa.",
+        "hab1color": "Violeta", "hab1colort": "Bestia",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Carga Heroica",
+        "hab0desc": "Haz 2 de daño a un oponente.",
+        "hab0color": "Rojo", "hab0colort": "Caído",
+        "hab0tipo": "Ataque"
+    }
+    ,
+	{
+        "uid": 58,
+        "id": "gaelapurezasesina",
+        "nombre": "Gaela Purezasesina",
+        "rareza": "Plata",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "13",
+        "numerode": "16",
+        "artista": "Nicolás Urse",
+        "especialidad": "Esqueleto", "espcolor": "Amarillo",
+        "hab4nombre": "Proyectil Espiritual",
+        "hab4desc": "Haz 4 de daño a un oponente.",
+        "hab4color": "Rojo", "hab4colort": "Caído",
+        "hab4tipo": "Ataque",
+        "hab3nombre": "Roido de Huesos",
+        "hab3desc": "Haz 2 de daño a un oponente por cada Esbirro que se haya Explotado previamente este turno.",
+        "hab3color": "Violeta", "hab3colort": "Bestia",
+        "hab3tipo": "Táctico",
+        "hab2nombre": "Ritual de Transmutacion",
+        "hab2desc": "Elige dos tipos de Esbirros. Los Esbirros que descartes para lanzar tus próximos Poderes se consideran de esos tipos.",
+        "hab2color": "Amarillo", "hab2colort": "Esqueleto",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Torreon Viviente",
+        "hab1desc": "Prevén hasta 2 de daño de un Poder de Ataque.",
+        "hab1color": "Azul", "hab1colort": "Golem",
+        "hab1tipo": "Defensa",
+        "hab0nombre": "Lectura de Huesos",
+        "hab0desc": "Copia el tipo y efecto de un Poder de coste 0 de otro Reptante que esté preparado.",
+        "hab0color": "Amarillo", "hab0colort": "Esqueleto",
+        "hab0tipo": "Táctico"
+    }
+    ,
+	{
+        "uid": 59,
+        "id": "carpatoeternocastigo",
+        "nombre": "Cárpato Eternocastigo",
+        "rareza": "Ónix",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "14",
+        "numerode": "16",
+        "artista": "Nicolás Urse",
+        "especialidad": "Esqueleto", "espcolor": "Amarillo",
+        "hab4nombre": "Calavera Flameante",
+        "hab4desc": "Haz 5 de daño a un oponente.",
+        "hab4color": "Amarillo", "hab4colort": "Esqueleto",
+        "hab4tipo": "Ataque",
+        "hab3nombre": "Infeccion Creciente",
+        "hab3desc": "Muestra tu mano. Por cada Esbirro que no sea Zombie en ella, descarta al azar 1 Esbirro de la mano de un oponente.",
+        "hab3color": "Verde", "hab3colort": "Zombie",
+        "hab3tipo": "Táctico",
+        "hab2nombre": "Torreon Viviente",
+        "hab2desc": "Prevén hasta 3 de daño de un Poder de Ataque.",
+        "hab2color": "Azul", "hab2colort": "Golem",
+        "hab2tipo": "Defensa",
+        "hab1nombre": "Ecos del Dolor",
+        "hab1desc": "Haz 1 de daño a un oponente por cada Esbirro que hayas Explotado para pagar el coste de otros Poderes este turno.",
+        "hab1color": "Blanco", "hab1colort": "Cualquiera",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Ritual de Transmutacion",
+        "hab0desc": "Elige un tipo de Esbirro. El Esbirro que descartes para lanzar tu próximo Poder se considera de ese tipo.",
+        "hab0color": "Amarillo", "hab0colort": "Esqueleto",
+        "hab0tipo": "Táctico"
+    }
+    ,
+	{
+        "uid": 60,
+        "id": "haraldhojaflameante",
+        "nombre": "Harald Hojaflameante",
+        "rareza": "Bronce",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "15",
+        "numerode": "16",
+        "artista": "Nicolás Urse",
+        "especialidad": "Caídos", "espcolor": "Rojo",
+        "hab4nombre": "Muro de Cadaveres",
+        "hab4desc": "Prevén hasta 4 de daño de un Poder de Ataque.",
+        "hab4color": "Amarillo", "hab4colort": "Esqueleto",
+        "hab4tipo": "Defensa",
+        "hab3nombre": "Contrato Mercenario",
+        "hab3desc": "Haz 3 de daño a un oponente.",
+        "hab3color": "Rojo", "hab3colort": "Caído",
+        "hab3tipo": "Táctico",
+        "hab2nombre": "Potenciar Armadura",
+        "hab2desc": "Refuerza 2 un Poder de Defensa.",
+        "hab2color": "Blanco", "hab2colort": "Cualquiera",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Poema de Amor y Muerte",
+        "hab1desc": "Si durante este turno lanzaste un Poder pagando su coste Explotando al menos 3 Esbirros, roba 2 Esbirros del tope de la Fosa y colócalos en tu Altar.",
+        "hab1color": "Amarillo", "hab1colort": "Esqueleto",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Carga Heroica",
+        "hab0desc": "Haz 2 de daño a un oponente.",
+        "hab0color": "Rojo", "hab0colort": "Caído",
+        "hab0tipo": "Ataque"
+    }
+    ,
+	{
+        "uid": 61,
+        "id": "brontevistaferoz",
+        "nombre": "Bronte Vistaferoz",
+        "rareza": "Ónix",
+        "coleccion": "Capítulo 1",
+        "estado": "Funcional",
+        "tienda": "",
+        "numero": "16",
+        "numerode": "16",
+        "artista": "Isidre Monés Pons",
+        "especialidad": "Bestia", "espcolor": "Violeta",
+        "hab4nombre": "Metamorfosis Masiva",
+        "hab4desc": "Elige un tipo de Esbirro. Todos los Esbirros en tu mano se consideran de ese tipo hasta el final de este turno.",
+        "hab4color": "Blanco", "hab4colort": "Cualquiera",
+        "hab4tipo": "Táctico",
+        "hab3nombre": "Torreon Viviente",
+        "hab3desc": "Prevén hasta 4 de daño de un Poder de Ataque.",
+        "hab3color": "Azul", "hab3colort": "Golem",
+        "hab3tipo": "Defensa",
+        "hab2nombre": "Acecho Nocturno",
+        "hab2desc": "Elige un tipo de Esbirro. Mira la mano de un oponente. Hazle de 2 daño por cada Esbirro del tipo elegido que tenga en la mano.",
+        "hab2color": "Violeta", "hab2colort": "Bestia",
+        "hab2tipo": "Táctico",
+        "hab1nombre": "Martirio Temporal",
+        "hab1desc": "Haz 3 de daño a un oponente por cada Esbirro que hayas devuelto o colocado de cualquier altar a cualquier mano o de cualquier Altar al tope de la Fosa en este turno.",
+        "hab1color": "Amarillo", "hab1colort": "Esqueleto",
+        "hab1tipo": "Táctico",
+        "hab0nombre": "Garras y Colmillos",
+        "hab0desc": "Haz 2 de daño a un oponente.",
+        "hab0color": "Violeta", "hab0colort": "Bestia",
+        "hab0tipo": "Ataque"
+    }
+    ,
+	{
+        "uid": -1,
         "id": "michiusgarrahiriente",
         "nombre": "Michius Garrahiriente",
         "rareza": "Carta de Gabriel",
@@ -1914,6 +2207,7 @@
     }
 	,
 	{
+        "uid": -2,
         "id": "patrickgraznidoletal",
         "nombre": "Patrick Graznidoletal",
         "rareza": "Carta de Ale chikito",
@@ -1947,6 +2241,7 @@
 	}
 	,
 	{
+        "uid": -3,
         "id": "dainarbuscaextincion",
         "nombre": "Dainar Buscaextincion",
         "rareza": "Carta de Green",
@@ -1980,6 +2275,7 @@
 	}
 	,
 	{
+        "uid": -4,
         "id": "dominicreyinmortal",
         "nombre": "Dominic Reyinmortal",
         "rareza": "Carta de Ale",
@@ -1996,7 +2292,7 @@
         "hab4tipo": "Táctico",
         "hab3nombre": "Reclutamiento Forzado",
         "hab3desc": "Revela 6 Esbirros del tope de la Fosa. Convierte un esbirro de tu altar en Caído por cada Caído revelado. Baraja la Fosa.",
-        "hab3color": "Rojo", "hab3colort": "Caido",
+        "hab3color": "Rojo", "hab3colort": "Caído",
         "hab3tipo": "Táctico",
         "hab2nombre": "Proyectil Espiritual",
         "hab2desc": "Haz 2 de daño a un oponente.",

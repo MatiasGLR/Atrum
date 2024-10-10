@@ -31,7 +31,7 @@ const mostrarCartas = async () => {
         if(carta.coleccion == "Personalizadas") if(edicion.value != "Personalizadas") return 0;
         if(edicion.value != "") {
             if(edicion.value == "Inicio") {
-                if(cajaInicio(carta.id) == 1) yes = 1; else return 0;
+                if(cajaInicio(carta.uid)) yes = 1; else return 0;
             }
             else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase())) yes = 1; else return 0;
         } 
@@ -115,9 +115,41 @@ function tieneHabilidadEn(carta, hab, slot){
     return 0;
 }
 
-function cajaInicio(carta) {
-    switch (carta) {
-        case "ragadaskazotedeyermos","gurlagcontemplatumbas","lailasollozoimpuro","butchorcortecuerno","alisonhalovenganza","gorthinvocaplagas","murtaumbratenebra": return 1;
+function cajaInicio(uid) {
+    switch (uid) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            return 1;
         default: return 0;
     }
 }
+
+const vida_arriba = document.querySelector("#vida_arriba");
+
+let var_vidaArriba = 10;
+let var_vidaAbajo = 10;
+
+document.querySelector('#boton_arriba_bajar').addEventListener("click", () => {
+    var_vidaArriba = Math.max(var_vidaArriba-1,0);
+    vida_arriba.innerHTML = ""+var_vidaArriba+"";
+    return 1;
+});
+document.querySelector('#boton_arriba_subir').addEventListener("click", () => {
+    var_vidaArriba = Math.min(var_vidaArriba+1,20);
+    vida_arriba.innerHTML = ""+var_vidaArriba+"";
+    return 1;
+});
+document.querySelector('#boton_abajo_bajar').addEventListener("click", () => {
+    var_vidaAbajo = Math._max(var_vidaAbajo-1,0);
+    vida_abajo.innerHTML = ""+var_vidaAbajo+"";
+    return 1;
+});
+document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
+    var_vidaAbajo = Math.min(var_vidaAbajo+1,20);
+    vida_abajo.innerHTML = ""+var_vidaAbajo+"";
+    return 1;
+});
