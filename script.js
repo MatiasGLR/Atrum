@@ -6,6 +6,7 @@ const habilidad = document.querySelector("#habilidad");
 const hab_lv = document.querySelector("#hab_lv");
 const artista = document.querySelector("#artista");
 const filtro_uid = document.querySelector("#uid");
+const rareza = document.querySelector("#rareza");
 
 const getData = async () => {
     const res = await fetch(apiEndPoint);
@@ -22,6 +23,9 @@ const mostrarCartas = async () => {
 
     let dataDisplay = payload.filter((carta) => {
         let yes = 0;
+        if(rareza.value != "") {
+            if(rareza.value == carta.rareza) yes = 1; else return 0;
+        }
         if(filtro_uid.value > 0) {
             if(filtro_uid.value == carta.numero) yes = 1; else return 0;
         }
@@ -135,7 +139,7 @@ function cajaInicio(uid) {
         case 4:
         case 5:
         case 6:
-        case 77:
+        case 78:
             return 1;
         default: return 0;
     }
