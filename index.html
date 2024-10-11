@@ -11,6 +11,9 @@
         }
         function Dado(min, max) {
             let val = Math.round(Math.random() * (max - min) + min);
+            if(min == max && min == 0){
+                return document.querySelector("#resultado_Dado").value = "";
+            }
             if(min == 1 && max  == 2){
                 if(val == 1) return document.querySelector("#resultado_Dado").value = "H";
                 else return document.querySelector("#resultado_Dado").value = "T";
@@ -105,24 +108,25 @@
                     <div id="login-box" class="bg-white text-dark p-2">
                         <div id="barra_vida_arriba">
                             <div class="row">
-                                <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:180%; height:80px" class="col-4 vida_boton">+</button>
-                                <div id="vida_arriba" style="background-color: rgb(245, 243, 130); font-size:180%; height:80px; transform: rotate(180deg); border: 1px solid black" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:200%;">10</div></div>
-                                <button id="boton_arriba_bajar" style="background-color: rgb(238, 135, 135); font-size:180%; height:80px" class="col-4 vida_boton">-</button>
+                                <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:80px" class="col-4 vida_boton">+</button>
+                                <div id="vida_arriba" style="background-color: rgb(245, 243, 130); font-size:30px; height:80px; transform: rotate(180deg); border: 1px solid black" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:80px;">10</div></div>
+                                <button id="boton_arriba_bajar" style="background-color: rgb(238, 135, 135); font-size:30px; height:80px" class="col-4 vida_boton">-</button>
                             </div>
                         </div>
-                        <div class="roll_dice d-flex justify-content-center align-items-center">
-                            <button class="pointer" onclick="Dado(1,20)" style="width:50px; margin:5px; font-size:300%; border: 2px solid black">20</button>
-                            <button class="pointer" onclick="Dado(1,12)" style="width:50px; margin:5px; font-size:300%; border: 2px solid black">12</button>
-                            <button class="pointer" onclick="Dado(1,6)" style="width:50px; margin:5px; font-size:300%; border: 2px solid black">6</button>
-                            <button class="pointer" onclick="Dado(1,4)" style="width:50px; margin:5px; font-size:300%; border: 2px solid black">4</button>
-                            <button class="pointer" onclick="Dado(1,2)" style="width:50px; margin:5px; font-size:300%; border: 2px solid black; border-radius: 100%;">2</button>
-                            <input id="resultado_Dado" style="height:50px; font-size:300%; width:50px;"type="text" disabled>
+                        <div class="roll_dice d-flex justify-content-center align-items-center" style="margin: 20px 0px">
+                            <button class="pointer" onclick="Dado(1,20)" style="width:50px; margin:5px; font-size:30px; border: 2px solid black">20</button>
+                            <button class="pointer" onclick="Dado(1,12)" style="width:50px; margin:5px; font-size:30px; border: 2px solid black">12</button>
+                            <button class="pointer" onclick="Dado(1,6)" style="width:50px; margin:5px; font-size:30px; border: 2px solid black">6</button>
+                            <button class="pointer" onclick="Dado(1,4)" style="width:50px; margin:5px; font-size:30px; border: 2px solid black">4</button>
+                            <button class="pointer" onclick="Dado(1,2)" style="width:50px; margin:5px; font-size:30px; border: 2px solid black; border-radius: 100%;">2</button>
+                            <button class="pointer" onclick="Dado(0,0)" style="width:50px; margin:5px; font-size:30px; border: 2px solid black; border-radius: 100%;">X</button>
+                            <input id="resultado_Dado" style="height:50px; font-size:30px; width:50px;"type="text" disabled>
                         </div>
                         <div id="barra_vida_abajo">
                             <div class="row">
-                                <button id="boton_abajo_bajar" style="background-color: rgb(238, 135, 135); font-size:180%; height:80px" class="col-4 vida_boton">-</button>
-                                <div id="vida_abajo" style="background-color: rgb(245, 243, 130); font-size:180%; height:80px; border: 1px solid black" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:200%">10</div></div>
-                                <button id="boton_abajo_subir" style="background-color: rgb(157, 245, 130); font-size:180%; height:80px" class="col-4 vida_boton">+</button>
+                                <button id="boton_abajo_bajar" style="background-color: rgb(238, 135, 135); font-size:30px; height:80px" class="col-4 vida_boton">-</button>
+                                <div id="vida_abajo" style="background-color: rgb(245, 243, 130); font-size:30px; height:80px; border: 1px solid black" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:80px">10</div></div>
+                                <button id="boton_abajo_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:80px" class="col-4 vida_boton">+</button>
                             </div>
                         </div>
                     </div>
