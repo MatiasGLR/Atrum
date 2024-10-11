@@ -66,6 +66,9 @@
         .IconoVida img {
             width:100px;
         }
+        .IconoVida img:hover {
+            cursor: pointer;
+        }
         .IconoVida {
             position:fixed;
             top:10%;
@@ -75,7 +78,7 @@
 </head>
 <body style="overflow-x: hidden;">
     <div class="IconoVida">
-        <button onclick="openHealth()"><img src="./Recursos/vida.webp" alt=""></button>
+        <img onclick="openHealth()" src="./Recursos/vida.webp" alt="">
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered text-dark" role="document">
