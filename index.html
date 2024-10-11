@@ -11,11 +11,14 @@
         }
         function Dado(min, max) {
             let val = Math.round(Math.random() * (max - min) + min);
+            document.querySelector("#resultado_Dado").style.color = "black";
             if(min == max && min == 0){
                 document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
                 return document.querySelector("#resultado_Dado").value = "";
             }
             else {
+                if(val == max) document.querySelector("#resultado_Dado").style.background = "rgb(200, 244, 152)";
+                if(val == min) document.querySelector("#resultado_Dado").style.background = "rgb(244, 152, 152)";
                 document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
                 return document.querySelector("#resultado_Dado").value = val;
             }
@@ -32,8 +35,16 @@
             let jugador = Math.round(Math.random() * (2 - 1) + 1);
             diezArriba();
             diezAbajo();
-            if(jugador == 1) return document.querySelector("#resultado_Dado").style.background = "#0000FF"; 
-            else return document.querySelector("#resultado_Dado").style.background = "#FFFF00"; 
+            if(jugador == 1) {
+                document.querySelector("#resultado_Dado").value= "↑";
+                document.querySelector("#resultado_Dado").style.color = "white";
+                return document.querySelector("#resultado_Dado").style.background = "rgb(115, 117, 247)";
+            } 
+            else {
+                document.querySelector("#resultado_Dado").value= "↓";
+                document.querySelector("#resultado_Dado").style.color = "black";
+                return document.querySelector("#resultado_Dado").style.background = "rgb(245, 243, 130)"; 
+            }
         }
     </script>
     <style>
@@ -134,7 +145,7 @@
                             <button class="pointer" onclick="Dado(0,0)" style="width:50px; height: 50px; margin:5px; font-size:30px; border: 2px solid black">X</button>
                             <button class="pointer" onclick="IniciarJuego()" style="width:200px; height: 50px; margin:5px; font-size:30px; border: 2px solid black">Iniciar juego</button>
                             <p id="quieninicia"></p>
-                            <input id="resultado_Dado" style="height:50px; font-size:30px; width:50px; background-color: white;"type="text" disabled>
+                            <input class="form-horizontal" id="resultado_Dado" style="height:50px; font-size:30px; width:50px; background-color: white;"type="text" disabled>
                         </div>
                         <div id="barra_vida_abajo">
                             <div class="row">
