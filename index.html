@@ -191,6 +191,7 @@
     <p>
         <label for="input">Ingresar nombre de la carta</label><br>
         <input class="w-50" id="input" autofocus>
+        <input type="number" id="uid" min="0" value="" placeholder="Número">
     </p>
     <p>
         <label for="edicion">Seleccionar Colección</label><br>
@@ -223,6 +224,16 @@
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
+        </select>
+    </p>
+    <p>
+        <label for="artista">Artista</label><br>
+        <select id="artista" onchange="mostrarCartas()">
+            <option value="">Todos</option>
+            <option value="Nicolás Urse">Nicolás Urse</option>
+            <option value="Orian Jaramillo">Orian Jaramillo</option>
+            <option value="Isidre Monés Pons">Isidre Monés Pons</option>
+            <option value="Santiago Rosas">Santiago Rosas</option>
         </select>
     </p>
     <br><br><hr>

@@ -4,6 +4,8 @@ const input = document.querySelector("#input");
 const edicion = document.querySelector("#edicion");
 const habilidad = document.querySelector("#habilidad");
 const hab_lv = document.querySelector("#hab_lv");
+const artista = document.querySelector("#artista");
+const filtro_uid = document.querySelector("#uid");
 
 const getData = async () => {
     const res = await fetch(apiEndPoint);
@@ -20,6 +22,12 @@ const mostrarCartas = async () => {
 
     let dataDisplay = payload.filter((carta) => {
         let yes = 0;
+        if(filtro_uid.value > 0) {
+            if(filtro_uid.value == carta.numero) yes = 1; else return 0;
+        }
+        if(artista.value != ""){
+            if(carta.artista.toLowerCase().includes(artista.value.toLowerCase())) yes = 1; else return 0;
+        }
         if(hab === "") yes = 1;
         else {
             if(lvhab == -1 || lvhab == "") { if(tieneHabilidad(carta, hab) == 1) yes = 1; else return 0; }
@@ -49,7 +57,7 @@ const mostrarCartas = async () => {
         <div class="titulo col-md-3">
             <p>
                 <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
-                    <img style="width:150px" src="./Cartas/`+id+`.webp" alt=""><br>
+                    <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+id+`.webp" alt=""><br>
                     `+ nombre +`
                 </a>
             </p>
@@ -94,6 +102,10 @@ habilidad.addEventListener("input", () => {
 });
 
 input.addEventListener("input", () => {
+    mostrarCartas();
+});
+
+filtro_uid.addEventListener("input", () => {
     mostrarCartas();
 });
 
