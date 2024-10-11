@@ -155,11 +155,3 @@ document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
     return 1;
 });
 
-function Dado(min, max) {
-    let val = Math.round(Math.random() * (max - min) + min);
-    if(min == 1 && max  == 2){
-        if(val == 1) return document.querySelector("#resultado_Dado").value = "H";
-        else return document.querySelector("#resultado_Dado").value = "T";
-    } else return document.querySelector("#resultado_Dado").value = val;
-    
-  }
