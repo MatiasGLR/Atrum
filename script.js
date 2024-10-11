@@ -135,6 +135,7 @@ function cajaInicio(uid) {
         case 4:
         case 5:
         case 6:
+        case 77:
             return 1;
         default: return 0;
     }
