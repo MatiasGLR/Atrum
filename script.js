@@ -154,7 +154,3 @@ document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
     vida_abajo.innerHTML = ""+var_vidaAbajo+"";
     return 1;
 });
-
-function openHealth() {
-    $('#exampleModal').modal('show');
-}
