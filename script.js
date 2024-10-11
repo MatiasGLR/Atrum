@@ -136,21 +136,30 @@ let var_vidaAbajo = 10;
 
 document.querySelector('#boton_arriba_bajar').addEventListener("click", () => {
     var_vidaArriba = Math.max(var_vidaArriba-1,0);
-    vida_arriba.innerHTML = ""+var_vidaArriba+"";
-    return 1;
+    vida_arriba.innerHTML = "<div style='font-size:200%'>"+var_vidaArriba+"</div>";
+    return 1;10
 });
 document.querySelector('#boton_arriba_subir').addEventListener("click", () => {
     var_vidaArriba = Math.min(var_vidaArriba+1,20);
-    vida_arriba.innerHTML = ""+var_vidaArriba+"";
+    vida_arriba.innerHTML = "<div style='font-size:200%'>"+var_vidaArriba+"</div>";
     return 1;
 });
 document.querySelector('#boton_abajo_bajar').addEventListener("click", () => {
     var_vidaAbajo = Math.max(var_vidaAbajo-1,0);
-    vida_abajo.innerHTML = ""+var_vidaAbajo+"";
+    vida_abajo.innerHTML = "<div style='font-size:200%'>"+var_vidaAbajo+"</div>";
     return 1;
 });
 document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
     var_vidaAbajo = Math.min(var_vidaAbajo+1,20);
-    vida_abajo.innerHTML = ""+var_vidaAbajo+"";
+    vida_abajo.innerHTML = "<div style='font-size:200%'>"+var_vidaAbajo+"</div>";
     return 1;
 });
+
+function Dado(min, max) {
+    let val = Math.round(Math.random() * (max - min) + min);
+    if(min == 1 && max  == 2){
+        if(val == 1) return document.querySelector("#resultado_Dado").value = "H";
+        else return document.querySelector("#resultado_Dado").value = "T";
+    } else return document.querySelector("#resultado_Dado").value = val;
+    
+  }
