@@ -20,12 +20,18 @@
                 return document.querySelector("#resultado_Dado").value = val;
             }
         }
+        function diezArriba() {
+            var_vidaArriba = 10;
+            vida_arriba.innerHTML = "<div style='font-size:80px'>10</div>";
+        }
+        function diezAbajo() {
+            var_vidaAbajo = 10;
+            vida_abajo.innerHTML = "<div style='font-size:80px'>10</div>";
+        }
         function IniciarJuego() {
             let jugador = Math.round(Math.random() * (2 - 1) + 1);
-            var_vidaArriba = 10;
-            var_vidaAbajo = 10;
-            vida_arriba.innerHTML = "<div style='font-size:80px'>10</div>";
-            vida_abajo.innerHTML = "<div style='font-size:80px'>10</div>";
+            diezArriba();
+            diezAbajo();
             if(jugador == 1) return document.querySelector("#resultado_Dado").style.background = "#0000FF"; 
             else return document.querySelector("#resultado_Dado").style.background = "#FFFF00"; 
         }
@@ -119,7 +125,7 @@
                         <div id="barra_vida_arriba">
                             <div class="row">
                                 <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:80px" class="col-4 vida_boton">+</button>
-                                <div id="vida_arriba" style="background-color: rgb(115, 117, 247); font-size:30px; height:80px; transform: rotate(180deg); border: 1px solid black" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:80px;">10</div></div>
+                                <button id="vida_arriba" onclick="diezArriba()" style="background-color: rgb(115, 117, 247); font-size:30px; height:80px; transform: rotate(180deg);" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:80px;">10</div></button>
                                 <button id="boton_arriba_bajar" style="background-color: rgb(238, 135, 135); font-size:30px; height:80px" class="col-4 vida_boton">-</button>
                             </div>
                         </div>
@@ -133,7 +139,7 @@
                         <div id="barra_vida_abajo">
                             <div class="row">
                                 <button id="boton_abajo_bajar" style="background-color: rgb(238, 135, 135); font-size:30px; height:80px" class="col-4 vida_boton">-</button>
-                                <div id="vida_abajo" style="background-color: rgb(245, 243, 130); font-size:30px; height:80px; border: 1px solid black" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:80px">10</div></div>
+                                <button id="vida_abajo" onclick="diezAbajo()" style="background-color: rgb(245, 243, 130); font-size:30px; height:80px;" class="col-4 d-flex justify-content-center align-items-center"><div style="font-size:80px">10</div></button>
                                 <button id="boton_abajo_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:80px" class="col-4 vida_boton">+</button>
                             </div>
                         </div>
