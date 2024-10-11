@@ -11,15 +11,16 @@
         }
         function Dado(min, max) {
             let val = Math.round(Math.random() * (max - min) + min);
+            document.querySelector("#resultado_Dado").style.background = "white";
             document.querySelector("#resultado_Dado").style.color = "black";
             if(min == max && min == 0){
                 document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
                 return document.querySelector("#resultado_Dado").value = "";
             }
             else {
+                document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
                 if(val == max) document.querySelector("#resultado_Dado").style.background = "rgb(200, 244, 152)";
                 if(val == min) document.querySelector("#resultado_Dado").style.background = "rgb(244, 152, 152)";
-                document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
                 return document.querySelector("#resultado_Dado").value = val;
             }
         }
