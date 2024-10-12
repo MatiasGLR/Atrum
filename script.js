@@ -207,3 +207,94 @@ document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
     return 1;
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+let hours = `00`,
+      minutes = `00`,
+      seconds = `00`,
+      chronometerDisplay = document.querySelector(`[data-chronometer]`),
+      chronometerCall,
+      preparationCall,
+      preparationSeconds = 30
+
+  function chronometer() {
+
+    seconds ++
+
+    if (seconds < 10) seconds = `0` + seconds
+
+    if (seconds > 59) {
+      seconds = `00`
+      minutes ++
+
+      if (minutes < 10) minutes = `0` + minutes
+    }
+
+    if (minutes > 59) {
+      minutes = `00`
+      hours ++
+      
+      if (hours < 10) hours = `0` + hours
+    }
+
+    chronometerDisplay.textContent = `${hours}:${minutes}:${seconds}`
+
+    if(minutes == 40 && seconds == 0) {
+        pause();
+    }
+  }
+
+  function chronometerpreparation() {
+
+    if(preparationSeconds == 0) {
+        clearInterval(preparationCall)
+        play()
+    } else {
+        preparationSeconds--;
+
+        document.querySelector("#boton_play").textContent = preparationSeconds;
+    }
+  }
+
+  function preparacion() {
+    preparationCall = setInterval(chronometerpreparation, 1000)
+    document.querySelector("#boton_play").textContent = 30;
+    document.querySelector("#boton_play").style.color = "red";
+    document.querySelector("#boton_play").setAttribute("disabled","true");
+  }
+
+  function play() {
+    chronometerCall = setInterval(chronometer, 1000)
+    document.querySelector("#boton_play").style.color = "black";
+    document.querySelector("#boton_play").textContent="00:00:00";
+    document.querySelector("#boton_play").setAttribute("disabled","true");
+  }
+
+  function pause() {
+    clearInterval(chronometerCall)
+    document.querySelector("#boton_play").removeAttribute(`disabled`)
+    document.querySelector("#boton_play").style.color = "red";
+  }
+
+  function reset() {
+    clearInterval(chronometerCall);
+    clearInterval(preparationCall);
+    preparationSeconds = 30;
+    hours = `00`;
+    minutes = `00`;
+    seconds = `00`;
+    document.querySelector("#boton_play").removeAttribute(`disabled`)
+    document.querySelector("#boton_play").style.color = "black";
+    document.querySelector("#boton_play").textContent ="ATRUM";
+  }
+
