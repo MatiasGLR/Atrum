@@ -40,8 +40,8 @@ async function mostrarEquipo(cartaid, slot) {
             <div class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
             `+hab1desc+`</div>
             <div class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
-            `+hab0desc+`</div>
-            <button class="btn btn-danger" onclick="mostrarEquipo(0, `+slot+`)">Eliminar</button>
+            `+hab0desc+`</div><br>
+            <button class="btn btn-danger w-100" style="border-radius:0px" onclick="mostrarEquipo(0, `+slot+`)">Eliminar</button>
         `;
     });
     return 1;
