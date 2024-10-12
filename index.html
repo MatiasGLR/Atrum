@@ -184,34 +184,10 @@
         }*/
     </style>
 
-    <div class="equipo_muestra row">
-        <div class="col-4 carta_equipo_1">
-            <span class="carta_equipo_titulo" id="carta_equipo_titulo_1"></span>
-            <span class="carta_equipo_imagen"></span>
-            <span class="carta_equipo_habilidad_4" id="carta_equipo_habilidad_1_4"></span>
-            <span class="carta_equipo_habilidad_3" id="carta_equipo_habilidad_1_3"></span>
-            <span class="carta_equipo_habilidad_2" id="carta_equipo_habilidad_1_2"></span>
-            <span class="carta_equipo_habilidad_1" id="carta_equipo_habilidad_1_1"></span>
-            <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_1_0"></span>
-        </div>
-        <div class="col-4 carta_equipo_2">
-            <span class="carta_equipo_titulo" id="carta_equipo_titulo_2"></span>
-            <span class="carta_equipo_imagen"></span>
-            <span class="carta_equipo_habilidad_4" id="carta_equipo_habilidad_2_4"></span>
-            <span class="carta_equipo_habilidad_3" id="carta_equipo_habilidad_2_3"></span>
-            <span class="carta_equipo_habilidad_2" id="carta_equipo_habilidad_2_2"></span>
-            <span class="carta_equipo_habilidad_1" id="carta_equipo_habilidad_2_1"></span>
-            <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_2_0"></span>
-        </div>
-        <div class="col-4 carta_equipo_3">
-            <span class="carta_equipo_titulo" id="carta_equipo_titulo_3"></span>
-            <span class="carta_equipo_imagen"></span>
-            <span class="carta_equipo_habilidad_4" id="carta_equipo_habilidad_3_4"></span>
-            <span class="carta_equipo_habilidad_3" id="carta_equipo_habilidad_3_3"></span>
-            <span class="carta_equipo_habilidad_2" id="carta_equipo_habilidad_3_2"></span>
-            <span class="carta_equipo_habilidad_1" id="carta_equipo_habilidad_3_1"></span>
-            <span class="carta_equipo_habilidad_0" id="carta_equipo_habilidad_3_0"></span>
-        </div>
+    <div id="zona_equipo" class="equipo_muestra row">
+        <div id="carta_equipo_1" class="col-4"></div>
+        <div id="carta_equipo_2" class="col-4"></div>
+        <div id="carta_equipo_3" class="col-4"></div>
     </div>
     <br><br>
     <p>
@@ -262,6 +238,10 @@
             <option value="Isidre Monés Pons">Isidre Monés Pons</option>
             <option value="Santiago Rosas">Santiago Rosas</option>
         </select>
+    </p>
+    <p>
+        <label for="informacion">Mostrar informacion adicional de la carta</label>
+        <input type="checkbox" onchange="mostrarCartas()" id="informacion" checked>
     </p>
     <br><br><hr>
     <div class="row "id="display-data"></div>

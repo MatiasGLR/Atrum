@@ -7,11 +7,44 @@ const hab_lv = document.querySelector("#hab_lv");
 const artista = document.querySelector("#artista");
 const filtro_uid = document.querySelector("#uid");
 const rareza = document.querySelector("#rareza");
+const informacion = document.querySelector("#informacion");
 
 const getData = async () => {
     const res = await fetch(apiEndPoint);
     const data = await res.json();
     return data;
+}
+
+async function mostrarEquipo(cartaid, slot) {
+    if(cartaid == 0) document.querySelector("#carta_equipo_"+slot+"").innerHTML = "";
+    const payload = await getData();
+    let datos = payload.filter((carta) => {
+        if(carta.uid == cartaid) return carta;
+    }).map((object) => {
+        const {uid, id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
+            hab0nombre,hab0desc,hab0color,hab0colort,hab0tipo,hab1nombre,hab1desc,hab1color,hab1colort,hab1tipo,
+            hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
+            hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor,locacion,ubicacion
+        } = object;
+        document.querySelector("#carta_equipo_"+slot+"").innerHTML = `
+            <div class="carta_equipo_imagen text-center" id="carta_equipo_imagen_"+slot+"">
+                <img style="width:50%; object-fit: cover;" src="./Cartas/`+id+`.webp" alt="">
+            </div>
+            <div class="carta_equipo_titulo" id="carta_equipo_titulo_"+slot+"">`+ nombre +`</div>
+            <div class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
+            `+hab4desc+`</div>
+            <div class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
+            `+hab3desc+`</div>
+            <div class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
+            `+hab2desc+`</div>
+            <div class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
+            `+hab1desc+`</div>
+            <div class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
+            `+hab0desc+`</div>
+            <button class="btn btn-danger" onclick="mostrarEquipo(0, `+slot+`)">Eliminar</button>
+        `;
+    });
+    return 1;
 }
 
 const mostrarCartas = async () => {
@@ -49,14 +82,23 @@ const mostrarCartas = async () => {
         } 
         if(yes == 1) return carta;
     }).map((object) => {
-        const {id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
+        const {uid, id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
             hab0nombre,hab0desc,hab0color,hab0colort,hab0tipo,hab1nombre,hab1desc,hab1color,hab1colort,hab1tipo,
             hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
             hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor,locacion,ubicacion
         } = object;
-        let tiendastring;
+        let tiendastring = "", infostring = "";
         if(tienda === "") { tiendastring = ""}
         else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br><b>Localidad:</b>  <a href="`+ubicacion+`">`+ locacion +`</a><br>`
+        if(informacion.checked) {
+            infostring = `<b>Rareza:</b> <x class="`+rareza+`">` + rareza +`</x><br>
+                <b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
+                `+ tiendastring +`
+                <b>Estado:</b> `+ estado +`<br>
+                <b>Artista:</b> `+ artista +`<br>
+                <b>Especialidad:</b> <x class="`+espcolor+`">`+ especialidad +`</x><br>
+                <br>`;
+        }
         return `
         <div class="titulo col-md-3">
             <p>
@@ -66,14 +108,7 @@ const mostrarCartas = async () => {
                 </a>
             </p>
             <div class="collapse" id="`+id+`">
-                
-                <b>Rareza:</b> <x class="`+rareza+`">` + rareza +`</x><br>
-                <b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
-                `+ tiendastring +`
-                <b>Estado:</b> `+ estado +`<br>
-                <b>Artista:</b> `+ artista +`<br>
-                <b>Especialidad:</b> <x class="`+espcolor+`">`+ especialidad +`</x><br>
-                <br>
+                `+infostring+`
                 <b>Habilidades</b>
                 <div class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
                 `+hab4desc+`</div>
@@ -86,9 +121,9 @@ const mostrarCartas = async () => {
                 <div class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
                 `+hab0desc+`</div>
                 <br>
-                <button class="btn btn-primary">1</button>
-                <button class="btn btn-primary">2</button>
-                <button class="btn btn-primary">3</button>
+                <button onclick="mostrarEquipo(`+uid+`, 1)" class="btn btn-primary">1</button>
+                <button onclick="mostrarEquipo(`+uid+`, 2)"class="btn btn-primary">2</button>
+                <button onclick="mostrarEquipo(`+uid+`, 3)"class="btn btn-primary">3</button>
             </div>
             <hr>
             </p>
