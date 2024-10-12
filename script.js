@@ -275,6 +275,8 @@ let hours = `00`,
 
   function play() {
     chronometerCall = setInterval(chronometer, 1000)
+    diezArriba();
+    diezAbajo();
     document.querySelector("#boton_play").style.color = "black";
     document.querySelector("#boton_play").textContent="00:00:00";
     document.querySelector("#boton_play").setAttribute("disabled","true");
