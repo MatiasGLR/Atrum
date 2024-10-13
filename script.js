@@ -1,7 +1,5 @@
 const apiEndPoint = "./dbjson.json";
 
-console.log("Console: " + apiEndPoint);
-
 const display = document.querySelector("#display-data");
 const input = document.querySelector("#input");
 const edicion = document.querySelector("#edicion");
