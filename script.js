@@ -18,17 +18,6 @@ const getData = async () => {
     return data;
 }
 
-async function loadJson() {
-    const {default:jsonConfig} = await import('./dbjson.json', {
-        assert: {
-            type:"json"
-        }
-    });
-    console.log(jsonConfig);
-}
-
-loadJson();
-
 async function mostrarEquipo(cartaid, slot) {
     if(cartaid == 0) document.querySelector("#carta_equipo_"+slot+"").innerHTML = "";
     const payload = await getData();
