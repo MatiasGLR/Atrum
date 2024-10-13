@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MatiasGLR/Atrum/issues"
   },
-  "homepage": "https://github.com/MatiasGLR/Atrum#readme"
+  "homepage": "https://github.com/MatiasGLR/Atrum#readme",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
 }
