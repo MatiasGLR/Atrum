@@ -1,8 +1,5 @@
 const apiEndPoint = "./dbjson.json";
 
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./Databases/players.db');
-
 const display = document.querySelector("#display-data");
 const input = document.querySelector("#input");
 const edicion = document.querySelector("#edicion");
