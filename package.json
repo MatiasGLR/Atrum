@@ -1,0 +1,19 @@
+{
+  "name": "catrum",
+  "version": "1.0.0",
+  "description": "Aplicacion creada por Gabriel para la comunidad de Atrum Arena",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatiasGLR/Atrum.git"
+  },
+  "author": "MatiasGLR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatiasGLR/Atrum/issues"
+  },
+  "homepage": "https://github.com/MatiasGLR/Atrum#readme"
+}

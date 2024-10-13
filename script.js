@@ -1,4 +1,8 @@
-const apiEndPoint = "./dbjson.json";
+//const apiEndPoint = "./dbjson.json";
+import apiEndPoint from './dbjson.json';
+
+console.log("Console: " + apiEndPoint);
+
 const display = document.querySelector("#display-data");
 const input = document.querySelector("#input");
 const edicion = document.querySelector("#edicion");
@@ -14,6 +18,17 @@ const getData = async () => {
     const data = await res.json();
     return data;
 }
+
+async function loadJson() {
+    const {default:jsonConfig} = await import('./dbjson.json', {
+        assert: {
+            type:"json"
+        }
+    });
+    console.log(jsonConfig);
+}
+
+loadJson();
 
 async function mostrarEquipo(cartaid, slot) {
     if(cartaid == 0) document.querySelector("#carta_equipo_"+slot+"").innerHTML = "";
