@@ -1,5 +1,4 @@
-//const apiEndPoint = "./dbjson.json";
-import apiEndPoint from './dbjson.json';
+const apiEndPoint = "./dbjson.json";
 
 console.log("Console: " + apiEndPoint);
 
