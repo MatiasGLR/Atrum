@@ -298,7 +298,7 @@ let hours = `00`,
     seconds = `00`;
     document.querySelector("#boton_play").removeAttribute(`disabled`)
     document.querySelector("#boton_play").style.color = "black";
-    document.querySelector("#boton_play").textContent ="ATRUM";
+    document.querySelector("#boton_play").textContent ="INICIAR";
 
     diezArriba();
     diezAbajo();
