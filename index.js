@@ -113,15 +113,15 @@ const mostrarCartas = async () => {
             <div class="collapse" id="`+id+`">
                 `+infostring+`
                 <b>Habilidades</b>
-                <div class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
+                <div onclick="buscarHabilidad('`+hab4nombre+`')" class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
                 `+hab4desc+`</div>
-                <div class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
+                <div onclick="buscarHabilidad('`+hab3nombre+`')" class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
                 `+hab3desc+`</div>
-                <div class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
+                <div onclick="buscarHabilidad('`+hab2nombre+`')" class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
                 `+hab2desc+`</div>
-                <div class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
+                <div onclick="buscarHabilidad('`+hab1nombre+`')" class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
                 `+hab1desc+`</div>
-                <div class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
+                <div onclick="buscarHabilidad('`+hab0nombre+`')" class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
                 `+hab0desc+`</div>
                 <br>
                 <button onclick="mostrarEquipo(`+uid+`, 1)" class="btn btn-primary">1</button>
@@ -139,6 +139,8 @@ const mostrarCartas = async () => {
 
 mostrarCartas();
 
+
+
 habilidad.addEventListener("input", () => {
     mostrarCartas();
 });
@@ -150,6 +152,11 @@ input.addEventListener("input", () => {
 filtro_uid.addEventListener("input", () => {
     mostrarCartas();
 });
+
+function buscarHabilidad(nombre) {
+    habilidad.value = nombre;
+    mostrarCartas();
+}
 
 function tieneHabilidad(carta, hab) {
     if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
