@@ -10,6 +10,8 @@ const filtro_uid = document.querySelector("#uid");
 const rareza = document.querySelector("#rareza");
 const informacion = document.querySelector("#informacion");
 
+const tablaliga = document.querySelector("#tabla-liga");
+
 const getData = async () => {
     const res = await fetch(apiEndPoint);
     const data = await res.json();
@@ -208,16 +210,56 @@ document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
     return 1;
 });
 
+async function generarEquipo() {
+    let cartasTotal = [];
+    const primeraedicion = document.querySelector("#ea_primeraedicion");
+    const exclusivas = document.querySelector("#ea_exclusivas");
+    const capitulouno = document.querySelector("#ea_capitulo1");
+    const capitulodos = document.querySelector("#ea_capitulo2");
+    const aniversario = document.querySelector("#ea_aniversario");
+    const personalizadas = document.querySelector("#ea_personalizadas");
 
+    const payload = await getData();
 
+    let dataDisplay = payload.filter((carta) => {
+        let yes = 0;
+        if(primeraedicion.checked && carta.coleccion.includes("Primera Edición")) yes = 1;
+        if(exclusivas.checked && carta.coleccion.includes("Exclusiva")) yes = 1;
+        if(capitulouno.checked && carta.coleccion.includes("Capítulo 1")) yes = 1;
+        if(capitulodos.checked && carta.coleccion.includes("Capítulo 2")) yes = 1;
+        if(aniversario.checked && carta.coleccion.includes("Edición Aniversario")) yes = 1;
+        if(personalizadas.checked && carta.coleccion.includes("Personalizadas")) yes = 1;
+        if(yes == 1) return carta;
+    }).map((object) => {
+        const {uid} = object;
+        return cartasTotal.push(uid);
+    }).join("");
 
+    if(cartasTotal.length >= 3) {
 
+        let carta1 = cartasTotal[Math.floor(Math.random() * cartasTotal.length)];
+        const index1 = cartasTotal.indexOf(carta1);
+        if (index1 > -1) { 
+            cartasTotal.splice(index1, 1); 
+        }
+        mostrarEquipo(carta1, 1);
+        
+        let carta2 = cartasTotal[Math.floor(Math.random() * cartasTotal.length)];
+        const index2 = cartasTotal.indexOf(carta2);
+        if (index2 > -1) { 
+            cartasTotal.splice(index2, 1);
+        }
+        mostrarEquipo(carta2, 2);
 
+        let carta3 = cartasTotal[Math.floor(Math.random() * cartasTotal.length)];
+        const index3 = cartasTotal.indexOf(carta3);
+        if (index3 > -1) { 
+            cartasTotal.splice(index3, 1); 
+        }
+        mostrarEquipo(carta3, 3);
 
-
-
-
-
+    }
+}
 
 
 let hours = `00`,
@@ -226,7 +268,7 @@ let hours = `00`,
       chronometerDisplay = document.querySelector(`[data-chronometer]`),
       chronometerCall,
       preparationCall,
-      preparationSeconds = 30
+      preparationSeconds = 10
 
   function chronometer() {
 
@@ -255,7 +297,7 @@ let hours = `00`,
     }
   }
 
-  function chronometerpreparation() {
+function chronometerpreparation() {
 
     if(preparationSeconds == 0) {
         clearInterval(preparationCall)
@@ -265,34 +307,34 @@ let hours = `00`,
 
         document.querySelector("#boton_play").textContent = preparationSeconds;
     }
-  }
+}
 
-  function preparacion() {
+function preparacion() {
     preparationCall = setInterval(chronometerpreparation, 1000)
-    document.querySelector("#boton_play").textContent = 30;
+    document.querySelector("#boton_play").textContent = 10;
     document.querySelector("#boton_play").style.color = "red";
     document.querySelector("#boton_play").setAttribute("disabled","true");
-  }
+}
 
-  function play() {
+function play() {
     chronometerCall = setInterval(chronometer, 1000)
     diezArriba();
     diezAbajo();
     document.querySelector("#boton_play").style.color = "black";
     document.querySelector("#boton_play").textContent="00:00:00";
     document.querySelector("#boton_play").setAttribute("disabled","true");
-  }
+}
 
-  function pause() {
+function pause() {
     clearInterval(chronometerCall)
     document.querySelector("#boton_play").removeAttribute(`disabled`)
     document.querySelector("#boton_play").style.color = "red";
-  }
+}
 
-  function reset() {
+function reset() {
     clearInterval(chronometerCall);
     clearInterval(preparationCall);
-    preparationSeconds = 30;
+    preparationSeconds = 10;
     hours = `00`;
     minutes = `00`;
     seconds = `00`;
@@ -302,5 +344,5 @@ let hours = `00`,
 
     diezArriba();
     diezAbajo();
-  }
+}
 

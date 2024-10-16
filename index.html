@@ -24,6 +24,12 @@
         function openHealth() {
             $('#exampleModal').modal('show');
         }
+        function openGenerar() {
+            $('#equipoAleatorioModal').modal('show');
+        }
+        function openChallonge() {
+            $('#challongeModal').modal('show');
+        }
         function Dado(min, max) {
             let val = Math.round(Math.random() * (max - min) + min);
             document.querySelector("#resultado_Dado").style.background = "white";
@@ -139,6 +145,30 @@
             top:2%;
             left:1%;
         }
+        .IconoRandom {
+            position:fixed;
+            top:15%;
+            left:1%;
+        }
+        .IconoRandom img {
+            width:50px;
+            border-radius: 100%;
+        }
+        .IconoRandom img:hover {
+            cursor: pointer;
+        }
+        .IconoChallonge {
+            position:fixed;
+            top:28%;
+            left:1%;
+        }
+        .IconoChallonge img {
+            width:50px;
+            border-radius: 100%;
+        }
+        .IconoChallonge img:hover {
+            cursor: pointer;
+        }
         #vida_arriba {
             vertical-align: baseline;
             height:80px;
@@ -149,6 +179,12 @@
     <div class="IconoVida">
         <img onclick="openHealth()" src="./Recursos/vida.webp" alt="">
     </div>
+    <div class="IconoRandom">
+        <img onclick="openGenerar()" src="./Recursos/random.webp" alt="">
+    </div>
+    <div class="IconoChallonge">
+        <img onclick="openChallonge()" src="./Recursos/Challonge_Icon.webp" alt="">
+    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered text-dark" role="document">
             <div class="modal-content">
@@ -156,7 +192,7 @@
                     <h5 class="modal-title m-auto" id="exampleModalLabel"><b class="text-danger">Contador de Vida</b></h5>
                 </div> 
                 <div class="modal-body">
-                    <div id="login-box" class="bg-white text-dark p-2">
+                    <div id="example" class="bg-white text-dark p-2">
                         <div id="barra_vida_arriba">
                             <div class="row">
                                 <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:160px" class="col-4 vida_boton">+</button>
@@ -186,26 +222,146 @@
             </div>
         </div>
     </div>
-    <style>
-        /*
-        #barra_vida_arriba {
-            position: fixed;
-            top:0%;
-            width:100%;
-            text-align: center;
-        }
-        .vida_boton:hover {
-            cursor: pointer;
-        }
-        #barra_vida_abajo {
-            position: fixed;
-            top:50%;
-            width:100%;
-        }
-        .vida_boton:hover {
-            cursor: pointer;
-        }*/
-    </style>
+    <div class="modal fade" id="equipoAleatorioModal" tabindex="-1" role="dialog" aria-labelledby="equipoAleatorioModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered text-dark" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title m-auto" id="equipoAleatorioModal"><b class="text-danger">Generar equipo aleatorio</b></h5>
+                </div> 
+                <div class="modal-body">
+                    <div id="equipoAleatorio" style="font-size:20px" class="bg-white text-dark p-2">
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_primeraedicion">  Primera edición</p>
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_exclusivas">  Exclusivas</p>
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_capitulo1">  Capítulo 1</p>
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_capitulo2">  Capítulo 2</p>
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_aniversario">  Aniversario</p>
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_personalizadas">  Personalizadas</p>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="generarEquipo()" class="btn btn-secondary">Generar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="challongeModal" tabindex="-1" role="dialog" aria-labelledby="challongeModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered text-dark" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title m-auto" id="challongeModal"><b class="text-danger">Generar equipo aleatorio</b></h5>
+                </div> 
+                <div class="modal-body">
+                    <div id="challonge" style="font-size:20px" class="bg-white text-dark p-2">
+                        <button class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#tabla-canelones" aria-expanded="true" aria-controls="tabla-canelones">Liga Cancelones</button>
+                        <button class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#tabla-maldonado" aria-expanded="true" aria-controls="tabla-maldonado">Liga Maldonado</button>
+                        <button class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#tabla-montevideo" aria-expanded="true" aria-controls="tabla-montevideo">Liga Montevideo</button>
+                        <div id="ligas">
+                            <div id="tabla-canelones" class="collapse" data-bs-parent="#ligas">
+                                <table class="table table-striped" >
+                                    <thead class="thead-dark">
+                                        <th>Posición</th><th>Nombre</th><th>Puntaje</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1.</td><td>amaubrigades</td><td>1123</td></tr>
+                                        <tr><td>2.</td><td>Jesssica1990</td><td>1046</td></tr>
+                                        <tr><td></td><td>Mastiseven</td><td>1046</td></tr>
+                                        <tr><td>4.</td><td>Orian_JM</td><td>1025</td></tr>
+                                        <tr><td>5.</td><td>DiegoNox</td><td>1023</td></tr>
+                                        <tr><td></td><td>UruKingo</td><td>1023</td></tr>
+                                        <tr><td>7.</td><td>Naxxhuel</td><td>1022</td></tr>
+                                        <tr><td>8.</td><td>Dreyakx</td><td>1008</td></tr>
+                                        <tr><td>9.</td><td>elchinolpUY</td><td>1004</td></tr>
+                                        <tr><td>10.</td><td>Parker_16</td><td>1001</td></tr>
+                                        <tr><td>11.</td><td>WwaffeN</td><td>1000</td></tr>
+                                        <tr><td>12.</td><td>Ludopatia</td><td>988</td></tr>
+                                        <tr><td>13.</td><td>EmisarioDelLumen</td><td>977</td></tr>
+                                        <tr><td>14.</td><td>SirLugarth</td><td>974</td></tr>
+                                        <tr><td>15.</td><td>ThiagoTibe</td><td>973</td></tr>
+                                        <tr><td>16.</td><td>KoshBorlon</td><td>963</td></tr>
+                                        <tr><td>17.</td><td>Milikii</td><td>955</td></tr>
+                                        <tr><td>18.</td><td>Josemil</td><td>952</td></tr>
+                                        <tr><td>19.</td><td>TatoIV</td><td>882</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="tabla-maldonado" class="collapse" data-bs-parent="#ligas">
+                                <table class="table table-striped" >
+                                    <thead class="thead-dark">
+                                        <th>Posición</th><th>Nombre</th><th>Puntaje</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1.</td><td>Green3741</td><td>1102</td></tr>
+                                        <tr><td>2.</td><td>UruKingo</td><td>1099</td></tr>
+                                        <tr><td>3.</td><td>amaubrigades</td><td>1084</td></tr>
+                                        <tr><td>4.</td><td>ianquiel</td><td>1077</td></tr>
+                                        <tr><td>5.</td><td>Gato_Gato</td><td>1043</td></tr>
+                                        <tr><td>6.</td><td>Wolf_Night</td><td>1030</td></tr>
+                                        <tr><td>7.</td><td>Josemil</td><td>1029</td></tr>
+                                        <tr><td>8.</td><td>EmisarioDelLumen</td><td>1026</td></tr>
+                                        <tr><td>9.</td><td>Ludopatia</td><td>1024</td></tr>
+                                        <tr><td>10.</td><td>Rekado</td><td>1016</td></tr>
+                                        <tr><td>11.</td><td>ianquiel05</td><td>1015</td></tr>
+                                        <tr><td></td><td>Jesssica1990</td><td>1015</td></tr>
+                                        <tr><td>13.</td><td>Alehaxtor</td><td>1012</td></tr>
+                                        <tr><td>14.</td><td>Thiagotibe</td><td>1010</td></tr>
+                                        <tr><td>15.</td><td>KoshBorlon</td><td>1004</td></tr>
+                                        <tr><td>16.</td><td>Naxxhuel</td><td>1003</td></tr>
+                                        <tr><td>17.</td><td>F3DENCO</td><td>1000</td></tr>
+                                        <tr><td>18.</td><td>duokai</td><td>994</td></tr>
+                                        <tr><td></td><td>Mastiseven</td><td>994</td></tr>
+                                        <tr><td>20.</td><td>Guisosalvaje21</td><td>989</td></tr>
+                                        <tr><td>21.</td><td>Ocin_final</td><td>988</td></tr>
+                                        <tr><td>22.</td><td>Anitaaaaa</td><td>986</td></tr>
+                                        <tr><td>23.</td><td>Maxi9827</td><td>976</td></tr>
+                                        <tr><td></td><td>Orian_JM</td><td>976</td></tr>
+                                        <tr><td>25.</td><td>TatoIV</td><td>968</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="tabla-montevideo" class="collapse" data-bs-parent="#ligas">
+                                <table class="table table-striped" >
+                                    <thead class="thead-dark">
+                                        <th>Posición</th><th>Nombre</th><th>Puntaje</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1.</td><td>amaubrigades</td><td>1226</td></tr>
+                                        <tr><td>2.</td><td>Naxxhuel</td><td>1152</td></tr>
+                                        <tr><td>3.</td><td>Mastiseven</td><td>1135</td></tr>
+                                        <tr><td>4.</td><td>UruKingo</td><td>1126</td></tr>
+                                        <tr><td>5.</td><td>Josemil</td><td>1076</td></tr>
+                                        <tr><td>6.</td><td>Pavelpin</td><td>1063</td></tr>
+                                        <tr><td>7.</td><td>antonygs</td><td>1045</td></tr>
+                                        <tr><td>8.</td><td>SantiagoCancela</td><td>1035</td></tr>
+                                        <tr><td>9.</td><td>Ludopatia</td><td>1031</td></tr>
+                                        <tr><td>10.</td><td>Jesssica1990</td><td>1030</td></tr>
+                                        <tr><td>11.</td><td>TatoIV</td><td>1022</td></tr>
+                                        <tr><td>12.</td><td>ImPhantomJoker</td><td>1019</td></tr>
+                                        <tr><td>13.</td><td>elchinolpUY</td><td>1018</td></tr>
+                                        <tr><td>14.</td><td>Ivanbignotti</td><td>1016</td></tr>
+                                        <tr><td>15.</td><td>AA0007</td><td>1013</td></tr>
+                                        <tr><td>16.</td><td>YanetHairKali</td><td>993</td></tr>
+                                        <tr><td></td><td>BrunoCrimson</td><td>993</td></tr>
+                                        <tr><td>18.</td><td>Two_Fires</td><td>990</td></tr>
+                                        <tr><td></td><td>AdrianRodriguez</td><td>990</td></tr>
+                                        <tr><td>20.</td><td>MatoGB</td><td>986</td></tr>
+                                        <tr><td></td><td>PrexWarrior</td><td>986</td></tr>
+                                        <tr><td>22.</td><td>KoshBorlon</td><td>979</td></tr>
+                                        <tr><td>23.</td><td>WwaffeN</td><td>977</td></tr>
+                                        <tr><td>24.</td><td>DiegoNox</td><td>976</td></tr>
+                                        <tr><td>25.</td><td>Vale_c4str0</td><td>974</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="zona_equipo" class="equipo_muestra row">
         <div id="carta_equipo_1" class="col-4"></div>
@@ -268,16 +424,14 @@
     </p>
     <br><br><hr>
     <div class="row "id="display-data"></div>
-    <script src="./index.js"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<script src="./index.js"></script>
 </html>
