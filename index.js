@@ -268,6 +268,19 @@ async function generarEquipo() {
     }
 }
 
+function eliminarFiltros(){
+    input.value = "";
+    edicion.value = "";
+    habilidad.value = "";
+    hab_lv.value = "";
+    artista.value = "";
+    filtro_uid.value = "";
+    rareza.value = "";
+    mostrarCartas();
+}
+
+
+
 
 let hours = `00`,
       minutes = `00`,

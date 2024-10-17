@@ -30,6 +30,9 @@
         function openChallonge() {
             $('#challongeModal').modal('show');
         }
+        function openTorneos() {
+            $('#torneosModal').modal('show');
+        }
         function Dado(min, max) {
             let val = Math.round(Math.random() * (max - min) + min);
             document.querySelector("#resultado_Dado").style.background = "white";
@@ -142,12 +145,12 @@
         }
         .IconoVida {
             position:fixed;
-            top:2%;
+            top:15%;
             left:1%;
         }
         .IconoRandom {
             position:fixed;
-            top:15%;
+            top:28%;
             left:1%;
         }
         .IconoRandom img {
@@ -159,7 +162,7 @@
         }
         .IconoChallonge {
             position:fixed;
-            top:28%;
+            top:41%;
             left:1%;
         }
         .IconoChallonge img {
@@ -169,6 +172,30 @@
         .IconoChallonge img:hover {
             cursor: pointer;
         }
+        .Icono_menu_fixed {
+            position:fixed;
+            top:2%;
+            left:1%;
+        }
+        .Icono_menu_fixed img {
+            width:50px;
+            border-radius: 100%;
+        }
+        .Icono_menu_fixed img:hover {
+            cursor: pointer;
+        }
+        .IconoTorneos {
+            position:fixed;
+            top:54%;
+            left:1%;
+        }
+        .IconoTorneos img {
+            width:50px;
+            border-radius: 100%;
+        }
+        .IconoTorneos img:hover {
+            cursor: pointer;
+        }
         #vida_arriba {
             vertical-align: baseline;
             height:80px;
@@ -176,14 +203,22 @@
     </style>
 </head>
 <body style="overflow-x: hidden;">
-    <div class="IconoVida">
-        <img onclick="openHealth()" src="./Recursos/vida.webp" alt="">
+    <div role="button" data-bs-toggle="collapse" data-bs-target="#menu_fixed" aria-selected="menu_fixed" class="Icono_menu_fixed">
+        <img src="./Recursos/menu.png" alt="">
     </div>
-    <div class="IconoRandom">
-        <img onclick="openGenerar()" src="./Recursos/random.webp" alt="">
-    </div>
-    <div class="IconoChallonge">
-        <img onclick="openChallonge()" src="./Recursos/Challonge_Icon.webp" alt="">
+    <div id="menu_fixed" style="transition: 0s !important;" class="collapse pull-left">
+        <div class="IconoVida">
+            <img onclick="openHealth()" src="./Recursos/vida.webp" alt="">
+        </div>
+        <div class="IconoRandom">
+            <img onclick="openGenerar()" src="./Recursos/random.webp" alt="">
+        </div>
+        <div class="IconoChallonge">
+            <img onclick="openChallonge()" src="./Recursos/Challonge_Icon.webp" alt="">
+        </div>
+        <div class="IconoTorneos">
+            <img onclick="openTorneos()" src="./Recursos/atrum.png" alt="">
+        </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered text-dark" role="document">
@@ -241,6 +276,37 @@
                 <div class="modal-footer d-flex justify-content-between">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" onclick="generarEquipo()" class="btn btn-secondary">Generar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="torneosModal" tabindex="-1" role="dialog" aria-labelledby="torneosModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered text-dark" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title m-auto" id="torneosModal">
+                        <b class="text-danger">Fechas de torneos Octubre-2024</b><br>
+                        <b class="text-danger">Mes 7</b>
+                    </h5>
+                </div> 
+                <div class="modal-body">
+                    <div id="challonge" style="font-size:20px" class="bg-white text-dark p-2">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <th>Dia y Hora</th><th>Local</th><th>Liga</th><th></th>
+                            </thead>
+                            <tbody>
+                                <tr><td>Sábado 19<br>14:30 a 18:30</td><td>Partygames</td><td>Montevideo</td><td><a href="https://maps.app.goo.gl/Nra7Wp1Qu2x3eFKi9">Dirección</a></td></tr>
+                                <tr><td>Sábado 19<br>17:00 a 21:00</td><td>Games Ale</td><td>Maldonado</td><td><a href="https://maps.app.goo.gl/BXMCaPkAycT15rb3A">Dirección</a></td></tr>
+                                <tr><td>Sábado 26<br>14:30 a 17:30pm</td><td>Nueve Reinos</td><td>Canelones</td><td><a href="https://maps.app.goo.gl/LgGv1paVvYKfiWHk8">Dirección</a></td></tr>
+                                <tr><td>Sábado 26<br>18:00 a 21:00pm</td><td>Geartown</td><td>Maldonado</td><td><a href="https://maps.app.goo.gl/9SLcjF13JZYp3p73A">Dirección</a></td></tr>
+                                <tr><td>Sábado 26<br>19:00 a 22:30pm</td><td>Wirewood</td><td>Montevideo</td><td><a href="https://maps.app.goo.gl/oxVWptFxNfA5k9dSA">Dirección</a></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -421,6 +487,9 @@
     <p>
         <label for="informacion">Mostrar informacion adicional de la carta</label>
         <input type="checkbox" onchange="mostrarCartas()" id="informacion" checked>
+    </p>
+    <p>
+        <button class="btn btn-danger" onclick="eliminarFiltros()">Eliminar filtros</button>
     </p>
     <br><br><hr>
     <div class="row "id="display-data"></div>
