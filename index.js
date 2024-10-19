@@ -139,7 +139,40 @@ const mostrarCartas = async () => {
 
 mostrarCartas();
 
+let timeoutId = null, manteniendo = false  // in milliseconds
 
+function makeItBlack(btn) {
+    $(btn).css("background-color", "rgb(48, 48, 48)");
+}
+
+function changeColor(btn) {
+    if(timeoutId == null && manteniendo == false) {
+        if($(btn).css("background-color") == "rgb(48, 48, 48)") $(btn).css("background-color", "rgb(200, 200, 200)");
+        else if($(btn).css("background-color") == "rgb(200, 200, 200)") $(btn).css("background-color", "rgb(76, 189, 19)");
+        else if($(btn).css("background-color") == "rgb(76, 189, 19)") $(btn).css("background-color", "rgb(244, 247, 139)");
+        else if($(btn).css("background-color") == "rgb(244, 247, 139)") $(btn).css("background-color", "rgb(249, 109, 90)");
+        else if($(btn).css("background-color") == "rgb(249, 109, 90)") $(btn).css("background-color", "rgb(115, 200, 251)");
+        else if($(btn).css("background-color") == "rgb(115, 200, 251)") $(btn).css("background-color", "rgb(177, 132, 251)");
+        else if($(btn).css("background-color") == "rgb(177, 132, 251)") $(btn).css("background-color", "rgb(48, 48, 48)");
+    }
+    manteniendo = false;
+}
+
+function boton_clickeado(btn) {
+    if(timeoutId == null) {
+        timeoutId = setTimeout(() => {
+            makeItBlack(btn);
+            clearTimeout(timeoutId);
+            timeoutId = null;
+            manteniendo = true;
+        }, 500);
+    }
+}
+
+function boton_soltado(btn) {
+    clearTimeout(timeoutId);
+    timeoutId = null;
+}
 
 habilidad.addEventListener("input", () => {
     mostrarCartas();
