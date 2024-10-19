@@ -158,6 +158,17 @@ function changeColor(btn) {
     manteniendo = false;
 }
 
+function toggleAltar(btn) {
+    if($(btn).css("background-color") == "rgb(127, 246, 129)") {
+        $(btn).css("background-color", "rgb(249, 114, 114)");
+        $(btn).html("BAJÉ ALTAR");
+    }
+    else if($(btn).css("background-color") == "rgb(249, 114, 114)") {
+        $(btn).css("background-color", "rgb(127, 246, 129)");
+        $(btn).html("NO BAJÉ ALTAR");
+    }
+}
+
 function boton_clickeado(btn) {
     if(timeoutId == null) {
         timeoutId = setTimeout(() => {
@@ -357,7 +368,6 @@ function chronometerpreparation() {
         play()
     } else {
         preparationSeconds--;
-
         document.querySelector("#boton_play").textContent = preparationSeconds;
     }
 }
