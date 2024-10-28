@@ -175,7 +175,7 @@ function boton_clickeado(btn) {
             makeItBlack(btn);
             clearTimeout(timeoutId);
             timeoutId = null;
-            manteniendo = false;
+            manteniendo = true;
         }, 500);
     }
 }
@@ -183,6 +183,9 @@ function boton_clickeado(btn) {
 function boton_soltado(btn) {
     clearTimeout(timeoutId);
     timeoutId = null;
+    setTimeout(() => {
+        manteniendo = false;
+    }, 200);
 }
 
 habilidad.addEventListener("input", () => {
@@ -404,6 +407,14 @@ function reset() {
     document.querySelector("#boton_play").removeAttribute(`disabled`)
     document.querySelector("#boton_play").style.color = "black";
     document.querySelector("#boton_play").textContent ="INICIAR";
+
+    $("#btn_transmutacion").css("background-color", "rgb(48, 48, 48)");
+
+    if(timeoutId != null) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+        manteniendo = false;
+    }
 
     diezArriba();
     diezAbajo();
