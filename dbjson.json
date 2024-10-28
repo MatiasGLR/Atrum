@@ -2809,18 +2809,18 @@
         "hab3desc": "Aumenta 3 tu resistencia",
         "hab3color": "Azul", "hab3colort": "Golem",
         "hab3tipo": "Táctico",
-        "hab2nombre": "Excavado Instintivo",
-        "hab2desc": "Roba 3 Esbirros del tope de la Fosa.",
-        "hab2color": "Violeta", "hab2colort": "Bestia",
+        "hab2nombre": "Contrato Mercenario",
+        "hab2desc": "Haz 2 de daño a un oponente.",
+        "hab2color": "Rojo", "hab2colort": "Caído",
         "hab2tipo": "Táctico",
         "hab1nombre": "Transmutacion Fugaz",
         "hab1desc": "Puedes descartar 1 Esbirro de cualquier tipo para lanzar tu próximo Poder.",
         "hab1color": "Blanco", "hab1colort": "Cualquiera",
         "hab1tipo": "Táctico",
-        "hab0nombre": "Hambre Insaciable",
-        "hab0desc": "Haz 2 de daño a un oponente.",
-        "hab0color": "Verde", "hab0colort": "Zombie",
-        "hab0tipo": "Ataque"
+        "hab0nombre": "Protección del Rebaño",
+        "hab0desc": "Prevén hasta 2 de daño de un Poder de Ataque.",
+        "hab0color": "Violeta", "hab0colort": "Bestia",
+        "hab0tipo": "Defensa"
     }
 	,
 	{
