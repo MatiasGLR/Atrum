@@ -175,7 +175,7 @@ function boton_clickeado(btn) {
             makeItBlack(btn);
             clearTimeout(timeoutId);
             timeoutId = null;
-            manteniendo = true;
+            manteniendo = false;
         }, 500);
     }
 }
