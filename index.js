@@ -57,6 +57,15 @@ const mostrarCartas = async () => {
     
     const payload = await getData();
 
+    if(edicion.value == "Deidades") {
+        $("#paquete").css("display", "inline-block");
+        $("#rareza").css("display", "none");
+    }
+    else {
+        $("#rareza").css("display", "inline-block");
+        $("#paquete").css("display", "none");
+    }
+
     let dataDisplay = payload.filter((carta) => {
         let yes = 0;
         if(rareza.value != "") {
@@ -77,6 +86,12 @@ const mostrarCartas = async () => {
         else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = 1; else return 0;
         
         if(carta.coleccion == "Personalizadas") if(edicion.value != "Personalizadas") return 0;
+        if(carta.coleccion == "Deidades") {
+            if(edicion.value != "Deidades") return 0;
+            if(document.querySelector("#paquete").value != "") {
+                if(carta.rareza.includes(document.querySelector("#paquete").value)) yes = 1; else return 0;
+            }
+        }
         if(edicion.value != "") {
             if(edicion.value == "Inicio") {
                 if(cajaInicio(carta.uid)) yes = 1; else return 0;
@@ -88,53 +103,244 @@ const mostrarCartas = async () => {
         const {uid, id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
             hab0nombre,hab0desc,hab0color,hab0colort,hab0tipo,hab1nombre,hab1desc,hab1color,hab1colort,hab1tipo,
             hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
-            hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor,locacion,ubicacion
+            hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,hab5nombre,hab5desc,hab5color,hab5colort,hab5tipo,
+            hab6nombre,hab6desc,hab6color,hab6colort,hab6tipo,especialidad,espcolor,locacion,ubicacion
         } = object;
-        let tiendastring = "", infostring = "";
-        if(tienda === "") { tiendastring = ""}
-        else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br><b>Localidad:</b>  <a href="`+ubicacion+`">`+ locacion +`</a><br>`
-        if(informacion.checked) {
-            infostring = `<b>Rareza:</b> <x class="`+rareza+`">` + rareza +`</x><br>
-                <b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
-                `+ tiendastring +`
-                <b>Estado:</b> `+ estado +`<br>
-                <b>Artista:</b> `+ artista +`<br>
-                <b>Especialidad:</b> <x class="`+espcolor+`">`+ especialidad +`</x><br>
-                <br>`;
-        }
-        return `
-        <div class="titulo col-md-3">
-            <p>
-                <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
-                    <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+id+`.webp" alt=""><br>
-                    `+ nombre +`
-                </a>
-            </p>
-            <div class="collapse" id="`+id+`">
-                `+infostring+`
-                <b>Habilidades</b>
-                <div onclick="buscarHabilidad('`+hab4nombre+`')" class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
-                `+hab4desc+`</div>
-                <div onclick="buscarHabilidad('`+hab3nombre+`')" class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
-                `+hab3desc+`</div>
-                <div onclick="buscarHabilidad('`+hab2nombre+`')" class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
-                `+hab2desc+`</div>
-                <div onclick="buscarHabilidad('`+hab1nombre+`')" class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
-                `+hab1desc+`</div>
-                <div onclick="buscarHabilidad('`+hab0nombre+`')" class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
-                `+hab0desc+`</div>
-                <br>
-                <button onclick="mostrarEquipo(`+uid+`, 1)" class="btn btn-primary">1</button>
-                <button onclick="mostrarEquipo(`+uid+`, 2)"class="btn btn-primary">2</button>
-                <button onclick="mostrarEquipo(`+uid+`, 3)"class="btn btn-primary">3</button>
+        if(uid > -100) {
+            let tiendastring = "", infostring = "";
+            if(tienda === "") { tiendastring = ""}
+            else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br><b>Localidad:</b>  <a href="`+ubicacion+`">`+ locacion +`</a><br>`
+            if(informacion.checked) {
+                infostring = `<b>Rareza:</b> <x class="`+rareza+`">` + rareza +`</x><br>
+                    <b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
+                    `+ tiendastring +`
+                    <b>Estado:</b> `+ estado +`<br>
+                    <b>Artista:</b> `+ artista +`<br>
+                    <b>Especialidad:</b> <x class="`+espcolor+`">`+ especialidad +`</x><br>
+                    <br>`;
+            }
+            return `
+            <div class="titulo col-md-3">
+                <p>
+                    <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
+                        <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+id+`.webp" alt=""><br>
+                        `+ nombre +`
+                    </a>
+                </p>
+                <div class="collapse" id="`+id+`">
+                    `+infostring+`
+                    <b>Habilidades</b>
+                    <div onclick="buscarHabilidad('`+hab4nombre+`')" class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
+                    `+hab4desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab3nombre+`')" class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
+                    `+hab3desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab2nombre+`')" class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
+                    `+hab2desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab1nombre+`')" class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
+                    `+hab1desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab0nombre+`')" class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
+                    `+hab0desc+`</div>
+                    <br>
+                    <button onclick="mostrarEquipo(`+uid+`, 1)" class="btn btn-primary">1</button>
+                    <button onclick="mostrarEquipo(`+uid+`, 2)"class="btn btn-primary">2</button>
+                    <button onclick="mostrarEquipo(`+uid+`, 3)"class="btn btn-primary">3</button>
+                </div>
+                <hr>
+                </p>
             </div>
-            <hr>
-            </p>
-        </div>
-        `
+            `
+        } else {
+            let infostring = "";
+            if(informacion.checked) {
+                infostring = `<b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
+                <b>Artista:</b> `+ artista +`<br>
+                <b>Paquete:</b> `+ rareza +`<br>
+                <br>`;
+            }
+            return `
+            <div class="titulo col-md-3">
+                <p>
+                    <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
+                        <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+id+`.webp" alt=""><br>
+                        `+ nombre +`
+                    </a>
+                </p>
+                <div class="collapse" id="`+id+`">
+                    `+infostring+`
+                    <b>Habilidades</b>
+                    <div onclick="buscarHabilidad('`+hab6nombre+`')" class="bordeado `+hab6color+`">`+hab6nombre+` (`+hab6tipo+`)<br> `+hab6colort+`<br>
+                    `+hab6desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab5nombre+`')" class="bordeado `+hab5color+`">`+hab5nombre+` (`+hab5tipo+`)<br> `+hab5colort+`<br>
+                    `+hab5desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab4nombre+`')" class="bordeado `+hab4color+`">`+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
+                    `+hab4desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab3nombre+`')" class="bordeado `+hab3color+`">`+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
+                    `+hab3desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab2nombre+`')" class="bordeado `+hab2color+`">`+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
+                    `+hab2desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab1nombre+`')" class="bordeado `+hab1color+`">`+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
+                    `+hab1desc+`</div>
+                    <div onclick="buscarHabilidad('`+hab0nombre+`')" class="`+hab0color+`">`+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
+                    `+hab0desc+`</div>
+                    <br>
+                    <button onclick="jugarDeidad(`+uid+`)" class="btn btn-primary">Jugar contra esta Deidad</button>
+                </div>
+                <hr>
+                </p>
+            </div>
+            `
+        }
     }).join("");
 
     display.innerHTML = dataDisplay;
+}
+
+function borrarVelo() {
+    document.querySelector("#deidadesmodal_velo").innerHTML = "";
+}
+
+async function jugarVelo(norep) {
+    var str = "", rand = Math.floor(Math.random() * 9);
+    
+    while(rand == Math.abs(Number(norep)+100)) {
+        rand = Math.floor(Math.random() * 3);
+    }
+
+    str = `<div class="d-flex flex-wrap justify-content-around">`
+
+    await $.get("./dbjson.json", function(textString) {
+        const index_json = Object.entries(textString);
+        for(let i = 0; i < index_json.length ; i++) {
+            const json_a = JSON.parse(JSON.stringify(index_json[i][1]));
+            if(json_a.uid == -100-rand) {
+                str = str.concat(`
+                <p class="mt-2">
+                    <b class="text-info">`+ json_a.nombre +`</b><br>
+                    <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+json_a.id+`.webp" alt="">
+                </p>
+                <div class="" id="`+json_a.id+`">
+                    <b>Habilidades</b>
+                    <div class="bordeado `+json_a.hab6color+`"><b>(Costo: `+json_a.hab6coste+`)</b> `+json_a.hab6nombre+` (`+json_a.hab6tipo+`)<br> `+json_a.hab6colort+`<br>
+                    `+json_a.hab6desc+`</div>
+                    <div class="bordeado `+json_a.hab5color+`"><b>(Costo: `+json_a.hab5coste+`)</b> `+json_a.hab5nombre+` (`+json_a.hab5tipo+`)<br> `+json_a.hab5colort+`<br>
+                    `+json_a.hab5desc+`</div>
+                    <div class="bordeado `+json_a.hab4color+`"><b>(Costo: `+json_a.hab4coste+`)</b> `+json_a.hab4nombre+` (`+json_a.hab4tipo+`)<br> `+json_a.hab4colort+`<br>
+                    `+json_a.hab4desc+`</div>
+                    <div class="bordeado `+json_a.hab3color+`"><b>(Costo: `+json_a.hab3coste+`)</b> `+json_a.hab3nombre+` (`+json_a.hab3tipo+`)<br> `+json_a.hab3colort+`<br>
+                    `+json_a.hab3desc+`</div>
+                    <div class="bordeado `+json_a.hab2color+`"><b>(Costo: `+json_a.hab2coste+`)</b> `+json_a.hab2nombre+` (`+json_a.hab2tipo+`)<br> `+json_a.hab2colort+`<br>
+                    `+json_a.hab2desc+`</div>
+                    <div class="bordeado `+json_a.hab1color+`"><b>(Costo: `+json_a.hab1coste+`)</b> `+json_a.hab1nombre+` (`+json_a.hab1tipo+`)<br> `+json_a.hab1colort+`<br>
+                    `+json_a.hab1desc+`</div>
+                    <div class="`+json_a.hab0color+`"><b>(Costo: `+json_a.hab0coste+`)</b> `+json_a.hab0nombre+` (`+json_a.hab0tipo+`)<br> `+json_a.hab0colort+`<br>
+                    `+json_a.hab0desc+`</div>
+                    <br>
+                    <button onclick="borrarVelo()" class="btn btn-danger">Eliminar Velo</button>
+                </div>`);
+            }
+        }
+    });
+
+    str = str.concat(`</div>`);
+
+    document.querySelector("#deidadesmodal_velo").innerHTML = str;
+}
+
+const cantjug = document.querySelector("#cantidadjugadores");
+const vidajug = document.querySelector("#vidajugadores");
+
+function vidaDeidades() {
+    const cj = cantjug.value; 
+    let str = "";
+
+    document.querySelector("#vida0").value = cj*30;
+
+    if(cj != 0) {
+        for(let i=1;i<=cj;i++) {
+            str = str.concat(`
+                <div class="p-2 align-middle">
+                    <input id="nombreJugador" class="btn" style="height:30px; border:1px solid gray" type="text" placeholder="Nombre del jugador">
+                    <button class="btn btn-danger" onclick="VidaDeidad(`+i+`, -1)">-</button>
+                    <input id="vida`+i+`" class="btn btn-secondary" onclick="VidaDeidad(`+i+`, 10)" style="width:50px; font-size:15px" type="text" value="10">
+                    <button class="btn btn-success" onclick="VidaDeidad(`+i+`, 1)">+</button>
+                </div> 
+            `);
+        }
+    }
+
+    document.querySelector("#vidajugadores").innerHTML = str;
+}
+
+function VidaDeidad(jugador, cantidad) {
+    let vidaact = Number(document.querySelector("#vida"+jugador+"").value);
+    if(jugador > 0) {
+        document.querySelector("#vida"+jugador+"").value = Math.min(20, Math.max(0, vidaact + cantidad));
+    } else document.querySelector("#vida"+jugador+"").value = Math.max(0, vidaact + cantidad);
+}
+
+async function jugarDeidad(carta) {
+    var str = "";
+
+    str = `<div class="d-flex flex-wrap justify-content-around">`
+
+    await $.get("./dbjson.json", function(textString) {
+        const index_json = Object.entries(textString);
+        for(let i = 0; i < index_json.length ; i++) {
+            const json_a = JSON.parse(JSON.stringify(index_json[i][1]));
+            if(json_a.uid == carta) {
+                document.querySelector("#nombreDeidad").value = json_a.nombrer;
+                str = str.concat(`
+                <p>
+                    <br>
+                    <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+json_a.id+`.webp" alt="">
+                </p>
+                <div class="" id="`+json_a.id+`">
+                    <b>Habilidades</b>
+                    <div class="bordeado `+json_a.hab6color+`"><b>(Costo: `+json_a.hab6coste+`)</b> `+json_a.hab6nombre+` (`+json_a.hab6tipo+`)<br> `+json_a.hab6colort+`<br>
+                    `+json_a.hab6desc+`</div>
+                    <div class="bordeado `+json_a.hab5color+`"><b>(Costo: `+json_a.hab5coste+`)</b> `+json_a.hab5nombre+` (`+json_a.hab5tipo+`)<br> `+json_a.hab5colort+`<br>
+                    `+json_a.hab5desc+`</div>
+                    <div class="bordeado `+json_a.hab4color+`"><b>(Costo: `+json_a.hab4coste+`)</b> `+json_a.hab4nombre+` (`+json_a.hab4tipo+`)<br> `+json_a.hab4colort+`<br>
+                    `+json_a.hab4desc+`</div>
+                    <div class="bordeado `+json_a.hab3color+`"><b>(Costo: `+json_a.hab3coste+`)</b> `+json_a.hab3nombre+` (`+json_a.hab3tipo+`)<br> `+json_a.hab3colort+`<br>
+                    `+json_a.hab3desc+`</div>
+                    <div class="bordeado `+json_a.hab2color+`"><b>(Costo: `+json_a.hab2coste+`)</b> `+json_a.hab2nombre+` (`+json_a.hab2tipo+`)<br> `+json_a.hab2colort+`<br>
+                    `+json_a.hab2desc+`</div>
+                    <div class="bordeado `+json_a.hab1color+`"><b>(Costo: `+json_a.hab1coste+`)</b> `+json_a.hab1nombre+` (`+json_a.hab1tipo+`)<br> `+json_a.hab1colort+`<br>
+                    `+json_a.hab1desc+`</div>
+                    <div class="`+json_a.hab0color+`"><b>(Costo: `+json_a.hab0coste+`)</b> `+json_a.hab0nombre+` (`+json_a.hab0tipo+`)<br> `+json_a.hab0colort+`<br>
+                    `+json_a.hab0desc+`</div>
+                    <br>
+                    <button onclick="jugarVelo(`+json_a.uid+`)" class="btn btn-primary">Desgarro del Velo</button>
+                    <button class="btn btn-warning" onclick="textoDeidades()">Terminar combate</button>
+                </div>`);
+            }
+        }
+    });
+
+    str = str.concat(`</div>`);
+
+    $('#deidadesModal').modal('show');
+
+    document.querySelector("#deidadesmodal_data").innerHTML = str;
+}
+
+function textoDeidades() {
+    document.querySelector("#cantidadjugadores").value = "0";
+    vidaDeidades();
+    document.querySelector("#nombreDeidad").value = "";
+    document.querySelector("#deidadesmodal_data").innerHTML = `
+        <p onclick="jugarDeidad(-100)"><a href="#">Untoz'Eleth 'El Arrasador de Mundos'</a></p>
+        <p onclick="jugarDeidad(-101)"><a href="#">Nedhir'Ithul 'La Peste de las Nebulosas'</a></p>
+        <p onclick="jugarDeidad(-102)"><a href="#">Amend'Thi 'El Devorador de Novas'</a></p>
+        <p onclick="jugarDeidad(-103)"><a href="#">Yod'Endox 'El Quiebra Galaxias'</a></p>
+        <p onclick="jugarDeidad(-104)"><a href="#">Nigheb'Vhosh 'La Constelación infernal'</a></p>
+        <p onclick="jugarDeidad(-105)"><a href="#">Onca'Tholpuz 'El Triturador de Estrellas'</a></p>
+        <p onclick="jugarDeidad(-106)"><a href="#">Ghrizt'Exeler 'El Derretidor de Sueños'</a></p>
+        <p onclick="jugarDeidad(-107)"><a href="#">Thaiog'Nurka 'La Presencia del Fin'</a></p>
+        <p onclick="jugarDeidad(-108)"><a href="#">Yivhe'Urlath 'El Negador de la Existencia'</a></p>
+    `;
+    borrarVelo();
 }
 
 mostrarCartas();
@@ -211,6 +417,10 @@ function tieneHabilidad(carta, hab) {
     if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
     if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
     if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if(carta.coleccion.toLowerCase().includes("deidades")) {
+        if((carta.hab5nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab5desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+        if((carta.hab6nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab6desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    }
     return 0;
 }
 
@@ -220,6 +430,8 @@ function tieneHabilidadEn(carta, hab, slot){
     else if(slot == 2) { if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
     else if(slot == 3) { if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
     else if(slot == 4) { if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 5) { if((carta.hab5nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab5desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 6) { if((carta.hab6nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab6desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
     return 0;
 }
 

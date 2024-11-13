@@ -34,6 +34,9 @@
         function openTorneos() {
             $('#torneosModal').modal('show');
         }
+        function openDeidad() {
+            $('#deidadesModal').modal('show');
+        }
         function Dado(min, max) {
             let val = Math.round(Math.random() * (max - min) + min);
             document.querySelector("#resultado_Dado").style.background = "white";
@@ -137,6 +140,10 @@
         .Blanco {
             background-color: rgb(224, 224, 224);
         }
+        .Negro {
+            background-color: rgb(1, 1, 1);
+            color:rgb(254,254,254);
+        }
         .IconoVida img {
             width:50px;
         }
@@ -209,6 +216,18 @@
         .IconoApp img:hover {
             cursor: pointer;
         }
+        .IconoDeidad {
+            position:fixed;
+            top:80%;
+            left:1%;
+        }
+        .IconoDeidad img {
+            width:50px;
+            border-radius: 100%;
+        }
+        .IconoDeidad img:hover {
+            cursor: pointer;
+        }
         #vida_arriba {
             vertical-align: baseline;
             height:80px;
@@ -231,6 +250,9 @@
         </div>
         <div class="IconoTorneos">
             <img onclick="openTorneos()" src="./Recursos/atrum.png" alt="">
+        </div>
+        <div class="IconoDeidad">
+            <img onclick="openDeidad()" src="./Recursos/deidades.webp" alt="">
         </div>
         <div class="IconoApp">
             <a href="./Recursos/catrum.apk" download><img src="./Recursos/app.png"></a>
@@ -300,6 +322,7 @@
                         <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_capitulo1">  Capítulo 1</p>
                         <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_capitulo2">  Capítulo 2</p>
                         <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_aniversario">  Aniversario</p>
+                        <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_deidades">  Deidades</p>
                         <p class="align-middle"><input class="align-middle" style="width:20px; height:20px" type="checkbox" id="ea_personalizadas">  Personalizadas</p>
                     </div>
                 </div>
@@ -333,6 +356,58 @@
                                 <tr><td>Sábado 26<br>19:00 a 22:30pm</td><td>Wirewood<br>Montevideo</td><td><a href="https://maps.app.goo.gl/oxVWptFxNfA5k9dSA">Dirección</a></td></tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deidadesModal" tabindex="-1" role="dialog" aria-labelledby="deidadesModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered text-dark" role="document">
+            <div style="font-size:10px" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title m-auto" id="deidadesModal">
+                        <b class="text-danger">Jugar contra Deidad</b><br>
+                    </h5>
+                </div> 
+                <div class="modal-body">
+                    <div id="deidades" style="font-size:15px" class="bg-white text-dark p-2 mb-4">
+                        <div id="deidadesmodal_vidas">
+                            <select id="cantidadjugadores" onchange="vidaDeidades()" name="" id="">
+                                <option value="0">Elegir cantidad de jugadores</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                            <div class="p-2 align-middle">
+                                <input id="nombreDeidad" class="btn" style="height:30px; border:1px solid gray" type="text" value="" disabled>
+                                <button class="btn btn-danger" onclick="VidaDeidad(0, -1)">-</button>
+                                <input id="vida0" class="btn btn-secondary" onclick="VidaDeidad(0, 30)" style="width:50px; font-size:15px" type="text" value="30">
+                                <button class="btn btn-success" onclick="VidaDeidad(0, 1)">+</button>
+                            </div>
+                            <div id="vidajugadores"></div>
+                        </div>
+                        <div id="deidadesmodal_data">
+                            <p onclick="jugarDeidad(-100)"><a href="#">Untoz'Eleth 'El Arrasador de Mundos'</a></p>
+                            <p onclick="jugarDeidad(-101)"><a href="#">Nedhir'Ithul 'La Peste de las Nebulosas'</a></p>
+                            <p onclick="jugarDeidad(-102)"><a href="#">Amend'Thi 'El Devorador de Novas'</a></p>
+                            <p onclick="jugarDeidad(-103)"><a href="#">Yod'Endox 'El Quiebra Galaxias'</a></p>
+                            <p onclick="jugarDeidad(-104)"><a href="#">Nigheb'Vhosh 'La Constelación infernal'</a></p>
+                            <p onclick="jugarDeidad(-105)"><a href="#">Onca'Tholpuz 'El Triturador de Estrellas'</a></p>
+                            <p onclick="jugarDeidad(-106)"><a href="#">Ghrizt'Exeler 'El Derretidor de Sueños'</a></p>
+                            <p onclick="jugarDeidad(-107)"><a href="#">Thaiog'Nurka 'La Presencia del Fin'</a></p>
+                            <p onclick="jugarDeidad(-108)"><a href="#">Yivhe'Urlath 'El Negador de la Existencia'</a></p>
+                        </div>
+                        <div id="deidadesmodal_velo">
+
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
@@ -481,7 +556,14 @@
             <option value="Capítulo 2">Capitulo 2</option>
             <option value="Capítulo 1 y Capítulo 2">Capítulo 1 y Capítulo 2</option>
             <option value="Edición Aniversario">Edición Aniversario</option>
-            <option value="Personalizadas">Personalizadas</option>
+            <option style="background: rgb(244, 244, 150)" value="Deidades">Deidades</option>
+            <option style="background: rgb(238, 156, 238)" value="Personalizadas">Personalizadas</option>
+        </select>
+        <select style="display:none" name="edicion" id="paquete" onchange="mostrarCartas()">
+            <option value="">...</option>
+            <option value="Incursión Alfa α">Incursión Alfa α</option>
+            <option value="Incursión Beta β">Incursión Beta β</option>
+            <option value="Incursión Gamma γ">Incursión Gamma γ</option>
         </select>
         <select name="" id="rareza" onchange="mostrarCartas()">
             <option value="">Todo</option>
