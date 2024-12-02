@@ -571,7 +571,7 @@ let hours = `00`,
 
     chronometerDisplay.textContent = `${hours}:${minutes}:${seconds}`
 
-    if(minutes == 40 && seconds == 0) {
+    if(minutes == 30 && seconds == 0) {
         pause();
     }
   }
