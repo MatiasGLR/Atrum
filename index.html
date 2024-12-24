@@ -157,11 +157,13 @@
             position:fixed;
             top:15%;
             left:1%;
+            cursor: pointer;
         }
         .IconoRandom {
             position:fixed;
             top:28%;
             left:1%;
+            cursor: pointer;
         }
         .IconoRandom img {
             width:50px;
@@ -174,6 +176,7 @@
             position:fixed;
             top:41%;
             left:1%;
+            cursor: pointer;
         }
         .IconoChallonge img {
             width:50px;
@@ -185,6 +188,7 @@
             position:fixed;
             top:2%;
             left:1%;
+            cursor: pointer;
         }
         .Icono_menu_fixed img {
             width:50px;
@@ -197,6 +201,7 @@
             position:fixed;
             top:54%;
             left:1%;
+            cursor: pointer;
         }
         .IconoTorneos img {
             width:50px;
@@ -209,6 +214,7 @@
             position:fixed;
             top:67%;
             left:1%;
+            cursor: pointer;
         }
         .IconoApp img {
             width:50px;
@@ -220,6 +226,7 @@
             position:fixed;
             top:80%;
             left:1%;
+            cursor: pointer;
         }
         .IconoDeidad img {
             width:50px;
@@ -239,24 +246,30 @@
         <img src="./Recursos/menu.png" alt="">
     </div>
     <div id="menu_fixed" style="transition: 0s !important;" class="collapse pull-left">
-        <div class="IconoVida">
-            <img onclick="openHealth()" src="./Recursos/vida.webp" alt="">
+        <div onclick="openHealth()" class="IconoVida bg-dark d-flex p-1 text-white" style="border-radius:10px; width:400px;">
+            <img class="me-1" src="./Recursos/vida.webp" alt="">
+            <h2 class="m-auto">Contador de vida</h2>
         </div>
-        <div class="IconoRandom">
-            <img onclick="openGenerar()" src="./Recursos/random.webp" alt="">
+        <div onclick="openGenerar()" class="IconoRandom bg-dark d-flex p-1 text-white" style="border-radius:10px; width:400px;">
+            <img class="me-1" src="./Recursos/random.webp" alt="">
+            <h2 class="m-auto">Equipo aleatorio</h2>
         </div>
-        <div class="IconoChallonge">
-            <img onclick="openChallonge()" src="./Recursos/Challonge_Icon.webp" alt="">
+        <div onclick="openChallonge()" class="IconoChallonge bg-dark d-flex p-1 text-white" style="border-radius:10px; width:400px;">
+            <img class="me-1" src="./Recursos/Challonge_Icon.webp" alt="">
+            <h2 class="m-auto">Puestos en ligas</h2>
         </div>
-        <div class="IconoTorneos">
-            <img onclick="openTorneos()" src="./Recursos/atrum.png" alt="">
+        <div onclick="openTorneos()" class="IconoTorneos bg-dark d-flex p-1 text-white" style="border-radius:10px; width:400px;">
+            <img class="me-1" src="./Recursos/atrum.png" alt="">
+            <h2 class="m-auto">Torneos</h2>
         </div>
-        <div class="IconoDeidad">
-            <img onclick="openDeidad()" src="./Recursos/deidades.webp" alt="">
+        <div onclick="openDeidad()" class="IconoDeidad bg-dark d-flex p-1 text-white" style="border-radius:10px; width:400px;">
+            <img class="me-1" src="./Recursos/deidades.webp" alt="">
+            <h2 class="m-auto">Jugar contra deidad</h2>
         </div>
-        <div class="IconoApp">
-            <a href="./Recursos/catrum.apk" download><img src="./Recursos/app.png"></a>
-        </div>
+        <a href="./Recursos/catrum.apk" download><div class="IconoApp bg-dark d-flex p-1 text-white" style="border-radius:10px; width:400px;">
+            <img class="me-1" src="./Recursos/app.png">
+            <h2 class="m-auto">Descargar APK (Android)</h2>
+        </div></a>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered text-dark" role="document">
