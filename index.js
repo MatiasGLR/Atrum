@@ -96,7 +96,7 @@ const mostrarCartas = async () => {
             if(edicion.value == "Inicio") {
                 if(cajaInicio(carta.uid)) yes = 1; else return 0;
             }
-            else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase())) yes = 1; else return 0;
+            else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase()) || carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = 1; else return 0;
         } 
         if(yes == 1) return carta;
     }).map((object) => {
