@@ -3215,6 +3215,37 @@
         "hab4color": "Rojo", "hab4colort": "Caído","hab4tipo": "Táctico"
     }
     ,
+	{
+        "uid": 96,
+        "id": "ignoirivusurpatronos_2",
+        "nombre": "Ignoir IV Usurpatronos",
+        "rareza": "Plata",
+        "coleccion": "Segunda Edición",
+        "tienda": "",
+        "linktienda": "#",
+        "estado": "Lanzamiento próximo",
+        "numero": "15",
+        "numerode": "X",
+        "artista": "Nicolás Urse",
+        "especialidad": "Caídos", "espcolor": "Rojo",
+        "hab0nombre": "Contrato Mercenario",
+        "hab0desc": "Haz 1 de daño a un oponente.",
+        "hab0color": "Rojo", "hab0colort": "Caído",
+        "hab0tipo": "Táctico",
+        "hab1nombre": "Bastion de Cuerpos",
+        "hab1desc": "Prevén hasta 1 de daño de un Poder.",
+        "hab1color": "Verde", "hab1colort": "Zombie","hab1tipo": "Táctico",
+        "hab2nombre": "Desperdicios Valiosos",
+        "hab2desc": "Busca y roba 1 Esbirro del Vertedero.",
+        "hab2color": "Blanco", "hab2colort": "Cualquiera","hab2tipo": "Táctico",
+        "hab3nombre": "Torreon Viviente",
+        "hab3desc": "Prevén hasta 4 de daño de un Poder de Ataque.",
+        "hab3color": "Azul", "hab3colort": "Golem","hab3tipo": "Defensa",
+        "hab4nombre": "Carga Heroica",
+        "hab4desc": "Haz 5 de daño a un oponente.",
+        "hab4color": "Rojo", "hab4colort": "Caído","hab4tipo": "Ataque"
+    }
+    ,
     {
         "uid": -100,
         "id": "untozeleth",
