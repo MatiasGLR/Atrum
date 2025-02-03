@@ -412,11 +412,11 @@ function buscarHabilidad(nombre) {
 }
 
 function tieneHabilidad(carta, hab) {
-    if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
-    if((carta.hab1nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab1desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
-    if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
-    if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
-    if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if(carta.hab0nombre) if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if(carta.hab1nombre) if((carta.hab1nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab1desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if(carta.hab2nombre) if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if(carta.hab3nombre) if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
+    if(carta.hab4nombre) if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
     if(carta.coleccion.toLowerCase().includes("deidades")) {
         if((carta.hab5nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab5desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
         if((carta.hab6nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab6desc.toLowerCase().includes(hab.toLowerCase()))) return 1;
@@ -425,13 +425,13 @@ function tieneHabilidad(carta, hab) {
 }
 
 function tieneHabilidadEn(carta, hab, slot){
-    if(slot == 0) { if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1; } 
-    else if(slot == 1) { if((carta.hab1nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab1desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
-    else if(slot == 2) { if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
-    else if(slot == 3) { if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
-    else if(slot == 4) { if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
-    else if(slot == 5) { if((carta.hab5nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab5desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
-    else if(slot == 6) { if((carta.hab6nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab6desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    if(slot == 0 && carta.hab0nombre) { if((carta.hab0nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab0desc.toLowerCase().includes(hab.toLowerCase()))) return 1; } 
+    else if(slot == 1 && carta.hab1nombre) { if((carta.hab1nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab1desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 2 && carta.hab2nombre) { if((carta.hab2nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab2desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 3 && carta.hab3nombre) { if((carta.hab3nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab3desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 4 && carta.hab4nombre) { if((carta.hab4nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab4desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 5 && carta.hab5nombre) { if((carta.hab5nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab5desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
+    else if(slot == 6 && carta.hab6nombre) { if((carta.hab6nombre.toLowerCase().includes(hab.toLowerCase())) || (carta.hab6desc.toLowerCase().includes(hab.toLowerCase()))) return 1; }
     return 0;
 }
 
