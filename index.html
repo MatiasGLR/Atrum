@@ -648,8 +648,12 @@
         </select>
     </p>
     <p>
-        <label for="informacion">Mostrar informacion adicional de la carta</label>
-        <input type="checkbox" onchange="mostrarCartas()" id="informacion" checked>
+        <label for="informacion">Mostrar solo habilidades</label>
+        <input type="checkbox" onchange="mostrarCartas()" id="informacion">
+    </p>
+    <p>
+        <label for="informacion">Ver cartas no funcionales (En competitivo)</label>
+        <input type="checkbox" onchange="mostrarCartas()" id="nofuncionales">
     </p>
     <p>
         <button class="btn btn-danger" onclick="eliminarFiltros()">Eliminar filtros</button>

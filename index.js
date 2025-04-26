@@ -9,6 +9,7 @@ const artista = document.querySelector("#artista");
 const filtro_uid = document.querySelector("#uid");
 const rareza = document.querySelector("#rareza");
 const informacion = document.querySelector("#informacion");
+const nofuncionales = document.querySelector("#nofuncionales");
 
 const tablaliga = document.querySelector("#tabla-liga");
 
@@ -16,6 +17,20 @@ const getData = async () => {
     const res = await fetch(apiEndPoint);
     const data = await res.json();
     return data;
+}
+
+function obtenerURLImagen(id, callback) {
+    const webp = `./Cartas/${id}.webp`;
+    const png = `./Cartas/${id}.png`;
+
+    const img = new Image();
+    img.onload = function () {
+        callback(webp);
+    };
+    img.onerror = function () {
+        callback(png);
+    };
+    img.src = webp;
 }
 
 async function mostrarEquipo(cartaid, slot) {
@@ -29,9 +44,13 @@ async function mostrarEquipo(cartaid, slot) {
             hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
             hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor,locacion,ubicacion
         } = object;
+        let enlace;
+        obtenerURLImagen(id, function(link) {
+           enlace = link;
+        });
         document.querySelector("#carta_equipo_"+slot+"").innerHTML = `
             <div class="carta_equipo_imagen text-center" id="carta_equipo_imagen_"+slot+"">
-                <img style="width:50%; object-fit: cover;" src="./Cartas/`+id+`.webp" alt="">
+                <img style="width:50%; object-fit: cover;" src="`+enlace+`" alt="">
             </div>
             <div class="carta_equipo_titulo" id="carta_equipo_titulo_"+slot+"">`+ nombre +`</div>
             <div class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
@@ -55,144 +74,116 @@ const mostrarCartas = async () => {
     let hab = habilidad.value;
     let lvhab = hab_lv.value;
     
+    // Obtener los datos
     const payload = await getData();
 
-    if(edicion.value == "Deidades") {
+    // Mostrar u ocultar elementos según la edición seleccionada
+    if (edicion.value == "Deidades") {
         $("#paquete").css("display", "inline-block");
         $("#rareza").css("display", "none");
-    }
-    else {
+    } else {
         $("#rareza").css("display", "inline-block");
         $("#paquete").css("display", "none");
     }
 
+    // Filtrar las cartas según los valores seleccionados en los filtros
     let dataDisplay = payload.filter((carta) => {
-        let yes = 0;
+        let yes = false;
         if(rareza.value != "") {
-            if(rareza.value == carta.rareza) yes = 1; else return 0;
+            if(rareza.value == carta.rareza) yes = true; else return false;
         }
         if(filtro_uid.value > 0) {
-            if(filtro_uid.value == carta.numero) yes = 1; else return 0;
+            if(filtro_uid.value == carta.numero) yes = true; else return false;
         }
         if(artista.value != ""){
-            if(carta.artista.toLowerCase().includes(artista.value.toLowerCase())) yes = 1; else return 0;
+            if(carta.artista.toLowerCase().includes(artista.value.toLowerCase())) yes = true; else return false;
         }
-        if(hab === "") yes = 1;
+        if(hab === "") yes = true;
         else {
-            if(lvhab == -1 || lvhab == "") { if(tieneHabilidad(carta, hab) == 1) yes = 1; else return 0; }
-            else { if(tieneHabilidadEn(carta, hab, lvhab)) yes = 1; else return 0; }
+            if(lvhab == -1 || lvhab == "") { if(tieneHabilidad(carta, hab) == 1) yes = true; else return false; }
+            else { if(tieneHabilidadEn(carta, hab, lvhab)) yes = true; else return false; }
         }
-        if(query_nombre === "") yes = 1;
-        else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = 1; else return 0;
+        if(query_nombre === "") yes = true;
+        else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = true; else return false;
         
-        if(carta.coleccion == "Personalizadas") if(edicion.value != "Personalizadas") return 0;
+        if(!nofuncionales.checked) {
+            if(carta.estado != "No funcional") yes = true; else return false;
+        }
+
+        if(carta.coleccion == "Personalizadas") if(edicion.value != "Personalizadas") return false;
         if(carta.coleccion == "Deidades") {
-            if(edicion.value != "Deidades") return 0;
+            if(edicion.value != "Deidades") return false;
             if(document.querySelector("#paquete").value != "") {
-                if(carta.rareza.includes(document.querySelector("#paquete").value)) yes = 1; else return 0;
+                if(carta.rareza.includes(document.querySelector("#paquete").value)) yes = true; else return false;
             }
         }
         if(edicion.value != "") {
             if(edicion.value == "Inicio") {
-                if(cajaInicio(carta.uid)) yes = 1; else return 0;
+                if(cajaInicio(carta.uid)) yes = true; else return false;
             }
-            else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase()) || carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = 1; else return 0;
+            else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase()) || carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = true; else return false;
         } 
-        if(yes == 1) return carta;
-    }).map((object) => {
-        const {uid, id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
-            hab0nombre,hab0desc,hab0color,hab0colort,hab0tipo,hab1nombre,hab1desc,hab1color,hab1colort,hab1tipo,
-            hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
-            hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,hab5nombre,hab5desc,hab5color,hab5colort,hab5tipo,
-            hab6nombre,hab6desc,hab6color,hab6colort,hab6tipo,especialidad,espcolor,locacion,ubicacion
-        } = object;
-        if(uid > -100) {
-            let tiendastring = "", infostring = "";
-            if(tienda === "") { tiendastring = ""}
-            else tiendastring = `<b>Tienda:</b> <a href="`+ linktienda +`">` + tienda +`</a><br><b>Localidad:</b>  <a href="`+ubicacion+`">`+ locacion +`</a><br>`
-            if(informacion.checked) {
-                infostring = `<b>Rareza:</b> <x class="`+rareza+`">` + rareza +`</x><br>
-                    <b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
-                    `+ tiendastring +`
-                    <b>Estado:</b> `+ estado +`<br>
-                    <b>Artista:</b> `+ artista +`<br>
-                    <b>Especialidad:</b> <x class="`+espcolor+`">`+ especialidad +`</x><br>
-                    <br>`;
-            }
-            return `
-            <div class="titulo col-md-3">
-                <p>
-                    <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
-                        <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+id+`.webp" alt=""><br>
-                        `+ nombre +`
-                    </a>
-                </p>
-                <div class="collapse" id="`+id+`">
-                    `+infostring+`
-                    <b>Habilidades</b>
-                    <div onclick="buscarHabilidad('`+hab4nombre+`')" class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
-                    `+hab4desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab3nombre+`')" class="bordeado `+hab3color+`">(3) `+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
-                    `+hab3desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab2nombre+`')" class="bordeado `+hab2color+`">(2) `+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
-                    `+hab2desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab1nombre+`')" class="bordeado `+hab1color+`">(1) `+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
-                    `+hab1desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab0nombre+`')" class="`+hab0color+`">(0) `+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
-                    `+hab0desc+`</div>
-                    <br>
-                    <button onclick="mostrarEquipo(`+uid+`, 1)" class="btn btn-primary">1</button>
-                    <button onclick="mostrarEquipo(`+uid+`, 2)"class="btn btn-primary">2</button>
-                    <button onclick="mostrarEquipo(`+uid+`, 3)"class="btn btn-primary">3</button>
-                </div>
-                <hr>
-                </p>
-            </div>
-            `
-        } else {
-            let infostring = "";
-            if(informacion.checked) {
-                infostring = `<b>Colección:</b> ` + coleccion +` (`+numero+`/`+numerode+`)<br>
-                <b>Artista:</b> `+ artista +`<br>
-                <b>Paquete:</b> `+ rareza +`<br>
-                <br>`;
-            }
-            return `
-            <div class="titulo col-md-3">
-                <p>
-                    <a class="" data-bs-toggle="collapse" href="#`+id+`" role="button" aria-expanded="false" aria-controls="`+id+`">
-                        <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/`+id+`.webp" alt=""><br>
-                        `+ nombre +`
-                    </a>
-                </p>
-                <div class="collapse" id="`+id+`">
-                    `+infostring+`
-                    <b>Habilidades</b>
-                    <div onclick="buscarHabilidad('`+hab6nombre+`')" class="bordeado `+hab6color+`">`+hab6nombre+` (`+hab6tipo+`)<br> `+hab6colort+`<br>
-                    `+hab6desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab5nombre+`')" class="bordeado `+hab5color+`">`+hab5nombre+` (`+hab5tipo+`)<br> `+hab5colort+`<br>
-                    `+hab5desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab4nombre+`')" class="bordeado `+hab4color+`">`+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
-                    `+hab4desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab3nombre+`')" class="bordeado `+hab3color+`">`+hab3nombre+` (`+hab3tipo+`)<br> `+hab3colort+`<br>
-                    `+hab3desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab2nombre+`')" class="bordeado `+hab2color+`">`+hab2nombre+` (`+hab2tipo+`)<br> `+hab2colort+`<br>
-                    `+hab2desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab1nombre+`')" class="bordeado `+hab1color+`">`+hab1nombre+` (`+hab1tipo+`)<br> `+hab1colort+`<br>
-                    `+hab1desc+`</div>
-                    <div onclick="buscarHabilidad('`+hab0nombre+`')" class="`+hab0color+`">`+hab0nombre+` (`+hab0tipo+`)<br> `+hab0colort+`<br>
-                    `+hab0desc+`</div>
-                    <br>
-                    <button onclick="jugarDeidad(`+uid+`)" class="btn btn-primary">Jugar contra esta Deidad</button>
-                </div>
-                <hr>
-                </p>
-            </div>
-            `
-        }
-    }).join("");
+        if(yes == true) return carta;
+    }).map((carta) => {
+        // Desestructurar la carta para extraer las propiedades necesarias
+        const {
+            uid, id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
+            hab0nombre, hab0desc, hab0color, hab0colort, hab0tipo, hab1nombre, hab1desc, hab1color, hab1colort, hab1tipo,
+            hab2nombre, hab2desc, hab2color, hab2colort, hab2tipo, hab3nombre, hab3desc, hab3color, hab3colort, hab3tipo,
+            hab4nombre, hab4desc, hab4color, hab4colort, hab4tipo, hab5nombre, hab5desc, hab5color, hab5colort, hab5tipo,
+            hab6nombre, hab6desc, hab6color, hab6colort, hab6tipo, locacion, ubicacion
+        } = carta;
 
-    display.innerHTML = dataDisplay;
+        // Crear una promesa para cargar la URL de la imagen
+        return new Promise((resolve) => {
+            obtenerURLImagen(id, function (enlace) {
+                let tiendastring = "", infostring = "";
+
+                if (tienda !== "") {
+                    tiendastring = `<b>Tienda:</b> <a href="${linktienda}">${tienda}</a><br><b>Localidad:</b> <a href="${ubicacion}">${locacion}</a><br>`;
+                }
+
+                if (!informacion.checked) {
+                    infostring = `<b>Rareza:</b> <x class="${rareza}">${rareza}</x><br>
+                                  <b>Colección:</b> ${coleccion} (${numero}/${numerode})<br>
+                                  ${tiendastring}
+                                  <b>Estado:</b> ${estado}<br>
+                                  <b>Artista:</b> ${artista}<br>
+                                  <b>Especialidad:</b> <x class="${hab0color}">${hab0tipo}</x><br><br>`;
+                }
+
+                let html = `
+                    <div class="titulo col-md-3">
+                        <p>
+                            <a class="" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${id}">
+                                <img style="width:150px; height:150px; object-fit: cover;" src="${enlace}" alt=""><br>
+                                ${nombre}
+                            </a>
+                        </p>
+                        <div class="collapse" id="${id}">
+                            ${infostring}
+                            <b>Habilidades</b>
+                            <div onclick="buscarHabilidad('${hab4nombre}')" class="bordeado ${hab4color}">(4) ${hab4nombre} (${hab4tipo})<br> ${hab4colort}<br>${hab4desc}</div>
+                            <div onclick="buscarHabilidad('${hab3nombre}')" class="bordeado ${hab3color}">(3) ${hab3nombre} (${hab3tipo})<br> ${hab3colort}<br>${hab3desc}</div>
+                            <div onclick="buscarHabilidad('${hab2nombre}')" class="bordeado ${hab2color}">(2) ${hab2nombre} (${hab2tipo})<br> ${hab2colort}<br>${hab2desc}</div>
+                            <div onclick="buscarHabilidad('${hab1nombre}')" class="bordeado ${hab1color}">(1) ${hab1nombre} (${hab1tipo})<br> ${hab1colort}<br>${hab1desc}</div>
+                            <div onclick="buscarHabilidad('${hab0nombre}')" class="${hab0color}">(0) ${hab0nombre} (${hab0tipo})<br> ${hab0colort}<br>${hab0desc}</div>
+                            <br>
+                            <button onclick="mostrarEquipo(${uid}, 1)" class="btn btn-primary">1</button>
+                            <button onclick="mostrarEquipo(${uid}, 2)" class="btn btn-primary">2</button>
+                            <button onclick="mostrarEquipo(${uid}, 3)" class="btn btn-primary">3</button>
+                        </div>
+                        <hr>
+                    </div>
+                `;
+                resolve(html); // Resolver la promesa con el HTML generado
+            });
+        });
+    });
+
+    // Esperar a que todas las promesas se resuelvan y luego mostrar los resultados
+    const allHtml = await Promise.all(dataDisplay);
+    display.innerHTML = allHtml.join(""); // Insertar el HTML generado en el contenedor
 }
 
 function borrarVelo() {
