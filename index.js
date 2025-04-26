@@ -121,6 +121,9 @@ const mostrarCartas = async () => {
             if(edicion.value == "Inicio") {
                 if(cajaInicio(carta.uid)) yes = true; else return false;
             }
+            else if(edicion.value == "Inicio2") {
+                if(cajaInicio2(carta.uid)) yes = true; else return false;
+            }
             else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase()) || carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = true; else return false;
         } 
         if(yes == true) return carta;
@@ -149,7 +152,7 @@ const mostrarCartas = async () => {
                                   ${tiendastring}
                                   <b>Estado:</b> ${estado}<br>
                                   <b>Artista:</b> ${artista}<br>
-                                  <b>Especialidad:</b> <x class="${hab0color}">${hab0tipo}</x><br><br>`;
+                                  <b>Especialidad:</b> <x class="${hab0color}">${hab0colort}</x><br><br>`;
                 }
 
                 let html = `
@@ -435,6 +438,17 @@ function cajaInicio(uid) {
         case 5:
         case 6:
         case 78:
+            return 1;
+        default: return 0;
+    }
+}
+
+function cajaInicio2(uid) {
+    switch (uid) {
+        case 82:
+        case 83:
+        case 84:
+        case 85:
             return 1;
         default: return 0;
     }
