@@ -337,9 +337,25 @@ function textoDeidades() {
     borrarVelo();
 }
 
-mostrarCartas();
-
 let timeoutId = null, manteniendo = false  // in milliseconds
+
+function moverse(lugar) {
+    if(lugar == 0) {
+        const ventana = document.querySelector("#d_inicial");
+        ventana.style.display = "flex";
+        display.innerHTML = "";
+    }
+    if(lugar == 1) {
+        const ventana = document.querySelector("#d_inicial");
+        ventana.style.display = "none";
+        mostrarCartas();
+    }
+    if(lugar == 2) {
+        const ventana = document.querySelector("#d_inicial");
+        ventana.style.display = "none";
+        mostrarCartas();
+    }
+}
 
 function makeItBlack(btn) {
     $(btn).css("background-color", "rgb(48, 48, 48)");

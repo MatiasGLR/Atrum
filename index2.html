@@ -6,9 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="/Recursos/favicon.ico">
     <title>Catrum App</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
     <script>
         // The wake lock sentinel.
         let wakeLock = null;
@@ -245,8 +242,7 @@
     </style>
 </head>
 <body style="overflow-x: hidden;">
-    <!--<div role="button" data-bs-toggle="collapse" data-bs-target="#menu_fixed" aria-selected="menu_fixed" >-->
-    <div onclick="moverse(0)" class="Icono_menu_fixed">
+    <div role="button" data-bs-toggle="collapse" data-bs-target="#menu_fixed" aria-selected="menu_fixed" class="Icono_menu_fixed">
         <img src="./Recursos/menu.png" alt="">
     </div>
     <div id="menu_fixed" style="transition: 0s !important;" class="collapse pull-left">
@@ -587,131 +583,83 @@
             </div>
         </div>
     </div>
-    <style>
-        .division-inicial {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh;
-            overflow-y: scroll;
-            z-index: 999;
-            position: fixed;
-        }
-        .division-inicial img {
-            width: 200px;
-        }
-        .division-inicial ul li {
-            background-color: #740000;
-            padding: 5px 20px 5px 20px;
-            border-radius: 10px;
-            border: 1px solid white;
-            cursor: pointer;
-        }
-        .division-inicial ul li:hover {
-            background-color: #af2626;
-            padding: 5px 20px 5px 20px;
-            border-radius: 10px;
-            border: 1px solid white;
-            cursor: pointer;
-        }
-        .division-inicial h1 {
-            font-family: 'Tagesschrift';
-            overflow: hidden;
-        }
-    </style>
-    <div id="d_inicial" class="division-inicial bg-dark">
-        <img src="./Recursos/atrum.webp" alt="Icono">
-        <h1 style="" class="text-white">Catrum App</h1>
-        <ul stlye="list-style:none" class="text-white m-0 mt-4 p-0 d-flex gap-3 flex-column">
-            <li>¿Cómo jugar Atrum Arena?</li>
-            <li onclick="moverse(1)">Listado de cartas</li>
-            <li onclick="openHealth()">Contador de vida</li>
-            <li>Jugar contra deidades</li>
-            <li>Generar equipo aleatorio</li>
-        </ul>
+
+    <div id="zona_equipo" class="equipo_muestra row">
+        <div id="carta_equipo_1" class="col-4"></div>
+        <div id="carta_equipo_2" class="col-4"></div>
+        <div id="carta_equipo_3" class="col-4"></div>
     </div>
-    <div class="division-cartas">
-        
-        <div id="zona_equipo" class="equipo_muestra row">
-            <div id="carta_equipo_1" class="col-4"></div>
-            <div id="carta_equipo_2" class="col-4"></div>
-            <div id="carta_equipo_3" class="col-4"></div>
-        </div>
-        <br><br>
-        <p>
-            <label for="input">Ingresar nombre de la carta</label><br>
-            <input class="w-50" id="input" autofocus>
-            <input type="number" id="uid" min="0" value="" placeholder="Número">
-        </p>
-        <p>
-            <label for="edicion">Seleccionar Colección</label><br>
-            <select style="width:40%" name="edicion" id="edicion" onchange="mostrarCartas()">
-                <option value="">...</option>
-                <option value="Inicio">Paquete de Inicio (1ra Ed)</option>
-                <option value="Inicio2">Paquete de Inicio (2da Ed)</option>
-                <option value="Primera Edición">Primera Edición</option>
-                <option value="Segunda Edición">Segunda Edición</option>
-                <option value="Exclusiva">Exclusivas de Tienda</option>
-                <option value="Capítulo 1">Capitulo 1</option>
-                <option value="Capítulo 2">Capitulo 2</option>
-                <option value="Capítulo 1 y Capítulo 2">Capítulo 1 y Capítulo 2</option>
-                <option value="Edición Aniversario">Edición Aniversario</option>
-                <option style="background: rgb(244, 244, 150)" value="Deidades">Deidades</option>
-            </select>
-            <select style="display:none" name="edicion" id="paquete" onchange="mostrarCartas()">
-                <option value="">...</option>
-                <option value="Incursión Alfa α">Incursión Alfa α</option>
-                <option value="Incursión Beta β">Incursión Beta β</option>
-                <option value="Incursión Gamma γ">Incursión Gamma γ</option>
-            </select>
-            <select name="" id="rareza" onchange="mostrarCartas()">
-                <option value="">Todo</option>
-                <option value="Bronce">Bronce</option>
-                <option value="Plata">Plata</option>
-                <option value="Oro">Oro</option>
-                <option value="Ónix">Ónix</option>
-                <option value="Inobtenible">Inobtenible</option>
-            </select>
-        </p>
-        <p>
-            <label for="habilidad">Buscar habilidad por nombre o descripción</label><br>
-            <input style="width:40%" id="habilidad">
-            <select name="" id="hab_lv" onchange="mostrarCartas()">
-                <option value="">Todo</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </p>
-        <p>
-            <label for="artista">Artista</label><br>
-            <select id="artista" onchange="mostrarCartas()">
-                <option value="">Todos</option>
-                <option value="Nicolás Urse">Nicolás Urse</option>
-                <option value="Orian Jaramillo">Orian Jaramillo</option>
-                <option value="Isidre Monés Pons">Isidre Monés Pons</option>
-                <option value="Santiago Rosas">Santiago Rosas</option>
-            </select>
-        </p>
-        <p>
-            <label for="informacion">Mostrar solo habilidades</label>
-            <input type="checkbox" onchange="mostrarCartas()" id="informacion">
-        </p>
-        <p>
-            <label for="informacion">Ver cartas no funcionales (En competitivo)</label>
-            <input type="checkbox" onchange="mostrarCartas()" id="nofuncionales">
-        </p>
-        <p>
-            <button class="btn btn-danger" onclick="eliminarFiltros()">Eliminar filtros</button>
-        </p>
-        <br><br><hr>
-        <div class="row "id="display-data"></div>
-        
-    </div>
+    <br><br>
+    <p>
+        <label for="input">Ingresar nombre de la carta</label><br>
+        <input class="w-50" id="input" autofocus>
+        <input type="number" id="uid" min="0" value="" placeholder="Número">
+    </p>
+    <p>
+        <label for="edicion">Seleccionar Colección</label><br>
+        <select style="width:40%" name="edicion" id="edicion" onchange="mostrarCartas()">
+            <option value="">...</option>
+            <option value="Inicio">Paquete de Inicio (1ra Ed)</option>
+            <option value="Inicio2">Paquete de Inicio (2da Ed)</option>
+            <option value="Primera Edición">Primera Edición</option>
+            <option value="Segunda Edición">Segunda Edición</option>
+            <option value="Exclusiva">Exclusivas de Tienda</option>
+            <option value="Capítulo 1">Capitulo 1</option>
+            <option value="Capítulo 2">Capitulo 2</option>
+            <option value="Capítulo 1 y Capítulo 2">Capítulo 1 y Capítulo 2</option>
+            <option value="Edición Aniversario">Edición Aniversario</option>
+            <option style="background: rgb(244, 244, 150)" value="Deidades">Deidades</option>
+        </select>
+        <select style="display:none" name="edicion" id="paquete" onchange="mostrarCartas()">
+            <option value="">...</option>
+            <option value="Incursión Alfa α">Incursión Alfa α</option>
+            <option value="Incursión Beta β">Incursión Beta β</option>
+            <option value="Incursión Gamma γ">Incursión Gamma γ</option>
+        </select>
+        <select name="" id="rareza" onchange="mostrarCartas()">
+            <option value="">Todo</option>
+            <option value="Bronce">Bronce</option>
+            <option value="Plata">Plata</option>
+            <option value="Oro">Oro</option>
+            <option value="Ónix">Ónix</option>
+            <option value="Inobtenible">Inobtenible</option>
+        </select>
+    </p>
+    <p>
+        <label for="habilidad">Buscar habilidad por nombre o descripción</label><br>
+        <input style="width:40%" id="habilidad">
+        <select name="" id="hab_lv" onchange="mostrarCartas()">
+            <option value="">Todo</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </p>
+    <p>
+        <label for="artista">Artista</label><br>
+        <select id="artista" onchange="mostrarCartas()">
+            <option value="">Todos</option>
+            <option value="Nicolás Urse">Nicolás Urse</option>
+            <option value="Orian Jaramillo">Orian Jaramillo</option>
+            <option value="Isidre Monés Pons">Isidre Monés Pons</option>
+            <option value="Santiago Rosas">Santiago Rosas</option>
+        </select>
+    </p>
+    <p>
+        <label for="informacion">Mostrar solo habilidades</label>
+        <input type="checkbox" onchange="mostrarCartas()" id="informacion">
+    </p>
+    <p>
+        <label for="informacion">Ver cartas no funcionales (En competitivo)</label>
+        <input type="checkbox" onchange="mostrarCartas()" id="nofuncionales">
+    </p>
+    <p>
+        <button class="btn btn-danger" onclick="eliminarFiltros()">Eliminar filtros</button>
+    </p>
+    <br><br><hr>
+    <div class="row "id="display-data"></div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
