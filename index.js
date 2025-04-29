@@ -353,7 +353,8 @@ function moverse(lugar) {
     if(lugar == 2) {
         const ventana = document.querySelector("#d_inicial");
         ventana.style.display = "none";
-        mostrarCartas();
+        const vida = document.querySelector("#contadorvida");
+        vida.style.display = "flex";
     }
 }
 
