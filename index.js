@@ -569,9 +569,10 @@ function eliminarFiltros(){
 
 
 let hours = `00`,
-      minutes = `00`,
+      minutes = `30`,
       seconds = `00`,
-      chronometerDisplay = document.querySelector(`[data-chronometer]`),
+      chronometerDisplay_arriba = document.querySelector(`.cronometroarriba`),
+      chronometerDisplay_abajo = document.querySelector(`.cronometroabajo`),
       chronometerCall,
       preparationCall,
       preparationSeconds = 10
@@ -596,10 +597,53 @@ let hours = `00`,
       if (hours < 10) hours = `0` + hours
     }
 
-    chronometerDisplay.textContent = `${hours}:${minutes}:${seconds}`
+    chronometerDisplay_arriba.textContent = `${minutes}:${seconds}`
+    chronometerDisplay_abajo.textContent = `${minutes}:${seconds}`
 
     if(minutes == 30 && seconds == 0) {
         pause();
+    }
+  }
+
+  function countdown() {
+    // Convertimos a números en caso de que sean strings con ceros al inicio
+    seconds = parseInt(seconds);
+    minutes = parseInt(minutes);
+    hours = parseInt(hours);
+  
+    // Decrementamos los segundos
+    seconds--;
+  
+    // Si los segundos llegan a -1, restamos un minuto y reiniciamos segundos a 59
+    if (seconds < 0) {
+      seconds = 59;
+      minutes--;
+  
+      // Si los minutos llegan a -1, restamos una hora y reiniciamos minutos a 59
+      if (minutes < 0) {
+        minutes = 59;
+        hours--;
+  
+        // Si las horas llegan a -1, detenemos el conteo (fin del cronómetro)
+        if (hours < 0) {
+          hours = 0;
+          minutes = 0;
+          seconds = 0;
+          pause(); // Detener el temporizador
+        }
+      }
+    }
+  
+    let displaySeconds = seconds < 10 ? '0' + seconds : seconds;
+    let displayMinutes = minutes < 10 ? '0' + minutes : minutes;
+  
+    // Mostrar el tiempo en pantalla
+    chronometerDisplay_arriba.textContent = `${displayMinutes}:${displaySeconds}`;
+    chronometerDisplay_abajo.textContent = `${displayMinutes}:${displaySeconds}`;
+  
+    // Si se llega a 00:00, detener el conteo
+    if (minutes === 0 && seconds === 0) {
+      pause();
     }
   }
 
@@ -622,26 +666,39 @@ function preparacion() {
 }
 
 function play() {
-    chronometerCall = setInterval(chronometer, 1000)
-    diezArriba();
-    diezAbajo();
-    document.querySelector("#boton_play").style.color = "black";
-    document.querySelector("#boton_play").textContent="00:00:00";
-    document.querySelector("#boton_play").setAttribute("disabled","true");
+    if(document.querySelector("#inicio").innerHTML == "Inicio"){
+        chronometerCall = setInterval(countdown, 1000)
+        reiniciar_vida_abajo();
+        reiniciar_vida_arriba();
+        toggleAltarOn(".baje_altar_btn_arriba");
+        toggleAltarOn(".baje_altar_btn_abajo");
+        document.querySelector("#inicio").innerHTML = "Final";
+        chronometerDisplay_arriba.textContent = `30:00`;
+        chronometerDisplay_abajo.textContent = `30:00`;
+    } else {
+        clearInterval(chronometerCall)
+        document.querySelector("#inicio").innerHTML = "Inicio";
+        chronometerDisplay_arriba.textContent = ``
+        chronometerDisplay_abajo.textContent = ``
+        minutes = `30`;
+        seconds = `00`;
+    }
 }
 
 function pause() {
     clearInterval(chronometerCall)
-    document.querySelector("#boton_play").removeAttribute(`disabled`)
-    document.querySelector("#boton_play").style.color = "red";
+    document.querySelector("#inicio").innerHTML = "Inicio";
+    chronometerDisplay_arriba.textContent = ``
+    chronometerDisplay_abajo.textContent = ``
+    minutes = `30`;
+    seconds = `00`;
 }
 
 function reset() {
     clearInterval(chronometerCall);
     clearInterval(preparationCall);
     preparationSeconds = 10;
-    hours = `00`;
-    minutes = `00`;
+    minutes = `30`;
     seconds = `00`;
     document.querySelector("#boton_play").removeAttribute(`disabled`)
     document.querySelector("#boton_play").style.color = "black";

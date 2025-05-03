@@ -373,6 +373,24 @@
         .boton {
             cursor: pointer;
         }
+        .cronometroabajo {
+            position: absolute;
+            left:50%;
+            top:60%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            font-size: 38px;
+            font-family: 'Tagesschrift';
+        }
+        .cronometroarriba {
+            position: absolute;
+            left:50%;
+            top:40%;
+            transform: translate(-50%, -50%) rotate(180deg);
+            z-index: 9999;
+            font-size: 38px;
+            font-family: 'Tagesschrift';
+        }
     </style>
     <div id="contadorvida" class="bg-dark">
         <div class="transaltar-arriba">
@@ -395,8 +413,10 @@
         </div>
         <div class="vida-centro">
             <div id="turno" class="boton menu" style="left: 15%;" onclick="pasaTurno()">Turno</div>
-            <div id="inicio" class="boton menu" style="left: 50%;">Inicio</div>
+            <div id="inicio" class="boton menu" onclick="play()" style="left: 50%;">Inicio</div>
             <div id="menu" class="boton menu" style="left: 85%;">Menu</div>
+            <div class="cronometroabajo"></div>
+            <div class="cronometroarriba rotar"></div>
         </div>
         <div class="vida-inferior d-flex">
             <div class="vida-boton vida-inferior-bajar boton" onclick="bajar_vida_abajo()">
