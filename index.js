@@ -19,20 +19,6 @@ const getData = async () => {
     return data;
 }
 
-function obtenerURLImagen(id, callback) {
-    const webp = `./Cartas/${id}.webp`;
-    const png = `./Cartas/${id}.png`;
-
-    const img = new Image();
-    img.onload = function () {
-        callback(webp);
-    };
-    img.onerror = function () {
-        callback(png);
-    };
-    img.src = webp;
-}
-
 async function mostrarEquipo(cartaid, slot) {
     if(cartaid == 0) document.querySelector("#carta_equipo_"+slot+"").innerHTML = "";
     const payload = await getData();
@@ -44,13 +30,9 @@ async function mostrarEquipo(cartaid, slot) {
             hab2nombre,hab2desc,hab2color,hab2colort,hab2tipo,hab3nombre,hab3desc,hab3color,hab3colort,hab3tipo,
             hab4nombre,hab4desc,hab4color,hab4colort,hab4tipo,especialidad,espcolor,locacion,ubicacion
         } = object;
-        let enlace;
-        obtenerURLImagen(id, function(link) {
-           enlace = link;
-        });
         document.querySelector("#carta_equipo_"+slot+"").innerHTML = `
             <div class="carta_equipo_imagen text-center" id="carta_equipo_imagen_"+slot+"">
-                <img style="width:50%; object-fit: cover;" src="`+enlace+`" alt="">
+                <img style="width:50%; object-fit: cover;" src="./Cartas/${id}.webp" alt="">
             </div>
             <div class="carta_equipo_titulo" id="carta_equipo_titulo_"+slot+"">`+ nombre +`</div>
             <div class="bordeado `+hab4color+`">(4) `+hab4nombre+` (`+hab4tipo+`)<br> `+hab4colort+`<br>
@@ -73,7 +55,7 @@ const mostrarCartas = async () => {
     let query_nombre = input.value;
     let hab = habilidad.value;
     let lvhab = hab_lv.value;
-    
+
     // Obtener los datos
     const payload = await getData();
 
@@ -89,105 +71,117 @@ const mostrarCartas = async () => {
     // Filtrar las cartas según los valores seleccionados en los filtros
     let dataDisplay = payload.filter((carta) => {
         let yes = false;
-        if(rareza.value != "") {
-            if(rareza.value == carta.rareza) yes = true; else return false;
+
+        if (rareza.value !== "") {
+            if (rareza.value === carta.rareza) yes = true;
+            else return false;
         }
-        if(filtro_uid.value > 0) {
-            if(filtro_uid.value == carta.numero) yes = true; else return false;
+        if (filtro_uid.value != "") {
+            if (parseInt(filtro_uid.value) == carta.numero) yes = true;
+            else return false;
         }
-        if(artista.value != ""){
-            if(carta.artista.toLowerCase().includes(artista.value.toLowerCase())) yes = true; else return false;
+        if (artista.value != "") {
+            if (carta.artista.toLowerCase().includes(artista.value.toLowerCase())) yes = true;
+            else return false;
         }
-        if(hab === "") yes = true;
+        if (hab === "") yes = true;
         else {
-            if(lvhab == -1 || lvhab == "") { if(tieneHabilidad(carta, hab) == 1) yes = true; else return false; }
-            else { if(tieneHabilidadEn(carta, hab, lvhab)) yes = true; else return false; }
+            if (lvhab == -1 || lvhab == "") {
+                if (tieneHabilidad(carta, hab) === 1) yes = true;
+                else return false;
+            } else {
+                if (tieneHabilidadEn(carta, hab, lvhab)) yes = true;
+                else return false;
+            }
         }
-        if(query_nombre === "") yes = true;
-        else if(carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = true; else return false;
-        
-        if(!nofuncionales.checked) {
-            if(carta.estado != "No funcional") yes = true; else return false;
+        if (query_nombre === "") yes = true;
+        else if (carta.nombre.toLowerCase().includes(query_nombre.toLowerCase())) yes = true;
+        else return false;
+
+        if (!nofuncionales.checked) {
+            if (carta.estado !== "No funcional") yes = true;
+            else return false;
         }
 
-        if(carta.coleccion == "Personalizadas") if(edicion.value != "Personalizadas") return false;
-        if(carta.coleccion == "Deidades") {
-            if(edicion.value != "Deidades") return false;
-            if(document.querySelector("#paquete").value != "") {
-                if(carta.rareza.includes(document.querySelector("#paquete").value)) yes = true; else return false;
+        if (carta.coleccion === "Personalizadas" && edicion.value !== "Personalizadas") return false;
+        if (carta.coleccion === "Deidades") {
+            if (edicion.value !== "Deidades") return false;
+            if (document.querySelector("#paquete").value !== "") {
+                if (carta.rareza.includes(document.querySelector("#paquete").value)) yes = true;
+                else return false;
             }
         }
-        if(edicion.value != "") {
-            if(edicion.value == "Inicio") {
-                if(cajaInicio(carta.uid)) yes = true; else return false;
-            }
-            else if(edicion.value == "Inicio2") {
-                if(cajaInicio2(carta.uid)) yes = true; else return false;
-            }
-            else if(edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase()) || carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())) yes = true; else return false;
-        } 
-        if(yes == true) return carta;
+
+        if (edicion.value !== "") {
+            if (edicion.value === "Inicio") {
+                if (cajaInicio(carta.uid)) yes = true;
+                else return false;
+            } else if (edicion.value === "Inicio2") {
+                if (cajaInicio2(carta.uid)) yes = true;
+                else return false;
+            } else if (
+                edicion.value.toLowerCase().includes(carta.coleccion.toLowerCase()) ||
+                carta.coleccion.toLowerCase().includes(edicion.value.toLowerCase())
+            ) yes = true;
+            else return false;
+        }
+
+        return yes;
     }).map((carta) => {
-        // Desestructurar la carta para extraer las propiedades necesarias
         const {
             uid, id, nombre, rareza, coleccion, tienda, linktienda, estado, numero, numerode, artista,
-            hab0nombre, hab0desc, hab0color, hab0colort, hab0tipo, hab1nombre, hab1desc, hab1color, hab1colort, hab1tipo,
-            hab2nombre, hab2desc, hab2color, hab2colort, hab2tipo, hab3nombre, hab3desc, hab3color, hab3colort, hab3tipo,
-            hab4nombre, hab4desc, hab4color, hab4colort, hab4tipo, hab5nombre, hab5desc, hab5color, hab5colort, hab5tipo,
-            hab6nombre, hab6desc, hab6color, hab6colort, hab6tipo, locacion, ubicacion
+            hab0nombre, hab0desc, hab0color, hab0colort, hab0tipo,
+            hab1nombre, hab1desc, hab1color, hab1colort, hab1tipo,
+            hab2nombre, hab2desc, hab2color, hab2colort, hab2tipo,
+            hab3nombre, hab3desc, hab3color, hab3colort, hab3tipo,
+            hab4nombre, hab4desc, hab4color, hab4colort, hab4tipo,
+            locacion, ubicacion
         } = carta;
 
-        // Crear una promesa para cargar la URL de la imagen
-        return new Promise((resolve) => {
-            obtenerURLImagen(id, function (enlace) {
-                let tiendastring = "", infostring = "";
+        let tiendastring = "", infostring = "";
 
-                if (tienda !== "") {
-                    tiendastring = `<b>Tienda:</b> <a href="${linktienda}">${tienda}</a><br><b>Localidad:</b> <a href="${ubicacion}">${locacion}</a><br>`;
-                }
+        if (tienda !== "") {
+            tiendastring = `<b>Tienda:</b> <a href="${linktienda}">${tienda}</a><br><b>Localidad:</b> <a href="${ubicacion}">${locacion}</a><br>`;
+        }
 
-                if (!informacion.checked) {
-                    infostring = `<b>Rareza:</b> <x class="${rareza}">${rareza}</x><br>
-                                  <b>Colección:</b> ${coleccion} (${numero}/${numerode})<br>
-                                  ${tiendastring}
-                                  <b>Estado:</b> ${estado}<br>
-                                  <b>Artista:</b> ${artista}<br>
-                                  <b>Especialidad:</b> <x class="${hab0color}">${hab0colort}</x><br><br>`;
-                }
+        if (!informacion.checked) {
+            infostring = `<b>Rareza:</b> <x class="${rareza}">${rareza}</x><br>
+                          <b>Colección:</b> ${coleccion} (${numero}/${numerode})<br>
+                          ${tiendastring}
+                          <b>Estado:</b> ${estado}<br>
+                          <b>Artista:</b> ${artista}<br>
+                          <b>Especialidad:</b> <x class="${hab0color}">${hab0colort}</x><br><br>`;
+        }
 
-                let html = `
-                    <div class="titulo col-md-3">
-                        <p>
-                            <a class="" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${id}">
-                                <img style="width:150px; height:150px; object-fit: cover;" src="${enlace}" alt=""><br>
-                                ${nombre}
-                            </a>
-                        </p>
-                        <div class="collapse" id="${id}">
-                            ${infostring}
-                            <b>Habilidades</b>
-                            <div onclick="buscarHabilidad('${hab4nombre}')" class="bordeado ${hab4color}">(4) ${hab4nombre} (${hab4tipo})<br> ${hab4colort}<br>${hab4desc}</div>
-                            <div onclick="buscarHabilidad('${hab3nombre}')" class="bordeado ${hab3color}">(3) ${hab3nombre} (${hab3tipo})<br> ${hab3colort}<br>${hab3desc}</div>
-                            <div onclick="buscarHabilidad('${hab2nombre}')" class="bordeado ${hab2color}">(2) ${hab2nombre} (${hab2tipo})<br> ${hab2colort}<br>${hab2desc}</div>
-                            <div onclick="buscarHabilidad('${hab1nombre}')" class="bordeado ${hab1color}">(1) ${hab1nombre} (${hab1tipo})<br> ${hab1colort}<br>${hab1desc}</div>
-                            <div onclick="buscarHabilidad('${hab0nombre}')" class="${hab0color}">(0) ${hab0nombre} (${hab0tipo})<br> ${hab0colort}<br>${hab0desc}</div>
-                            <br>
-                            <button onclick="mostrarEquipo(${uid}, 1)" class="btn btn-primary">1</button>
-                            <button onclick="mostrarEquipo(${uid}, 2)" class="btn btn-primary">2</button>
-                            <button onclick="mostrarEquipo(${uid}, 3)" class="btn btn-primary">3</button>
-                        </div>
-                        <hr>
-                    </div>
-                `;
-                resolve(html); // Resolver la promesa con el HTML generado
-            });
-        });
+        return `
+            <div class="titulo col-md-3">
+                <p>
+                    <a class="" data-bs-toggle="collapse" href="#${id}" role="button" aria-expanded="false" aria-controls="${id}">
+                        <img style="width:150px; height:150px; object-fit: cover;" src="./Cartas/${id}.webp" alt=""><br>
+                        ${nombre}
+                    </a>
+                </p>
+                <div class="collapse" id="${id}">
+                    ${infostring}
+                    <b>Habilidades</b>
+                    <div onclick="buscarHabilidad('${hab4nombre}')" class="bordeado ${hab4color}">(4) ${hab4nombre} (${hab4tipo})<br> ${hab4colort}<br>${hab4desc}</div>
+                    <div onclick="buscarHabilidad('${hab3nombre}')" class="bordeado ${hab3color}">(3) ${hab3nombre} (${hab3tipo})<br> ${hab3colort}<br>${hab3desc}</div>
+                    <div onclick="buscarHabilidad('${hab2nombre}')" class="bordeado ${hab2color}">(2) ${hab2nombre} (${hab2tipo})<br> ${hab2colort}<br>${hab2desc}</div>
+                    <div onclick="buscarHabilidad('${hab1nombre}')" class="bordeado ${hab1color}">(1) ${hab1nombre} (${hab1tipo})<br> ${hab1colort}<br>${hab1desc}</div>
+                    <div onclick="buscarHabilidad('${hab0nombre}')" class="${hab0color}">(0) ${hab0nombre} (${hab0tipo})<br> ${hab0colort}<br>${hab0desc}</div>
+                    <br>
+                    <button onclick="mostrarEquipo(${uid}, 1)" class="btn btn-primary">1</button>
+                    <button onclick="mostrarEquipo(${uid}, 2)" class="btn btn-primary">2</button>
+                    <button onclick="mostrarEquipo(${uid}, 3)" class="btn btn-primary">3</button>
+                </div>
+                <hr>
+            </div>
+        `;
     });
 
-    // Esperar a que todas las promesas se resuelvan y luego mostrar los resultados
-    const allHtml = await Promise.all(dataDisplay);
-    display.innerHTML = allHtml.join(""); // Insertar el HTML generado en el contenedor
-}
+    // Insertar el HTML generado en el contenedor
+    display.innerHTML = dataDisplay.join("");
+};
 
 function borrarVelo() {
     document.querySelector("#deidadesmodal_velo").innerHTML = "";
@@ -344,6 +338,8 @@ function moverse(lugar) {
         const ventana = document.querySelector("#d_inicial");
         ventana.style.display = "flex";
         display.innerHTML = "";
+        document.querySelector("#contadorvida").style.display = "none";
+        cerrarmenuvida();
     }
     if(lugar == 1) {
         const ventana = document.querySelector("#d_inicial");
@@ -475,34 +471,6 @@ function cajaInicio2(uid) {
         default: return 0;
     }
 }
-
-const vida_arriba = document.querySelector("#vida_arriba");
-const vida_abajo = document.querySelector("#vida_abajo");
-
-let var_vidaArriba = 10;
-let var_vidaAbajo = 10;
-
-document.querySelector('#boton_arriba_bajar').addEventListener("click", () => {
-    var_vidaArriba = Math.max(var_vidaArriba-1,0);
-    vida_arriba.innerHTML = "<div style='font-size:80px'>"+var_vidaArriba+"</div>";
-    return 1;10
-});
-document.querySelector('#boton_arriba_subir').addEventListener("click", () => {
-    var_vidaArriba = Math.min(var_vidaArriba+1,20);
-    vida_arriba.innerHTML = "<div style='font-size:80px'>"+var_vidaArriba+"</div>";
-    return 1;
-});
-document.querySelector('#boton_abajo_bajar').addEventListener("click", () => {
-    var_vidaAbajo = Math.max(var_vidaAbajo-1,0);
-    vida_abajo.innerHTML = "<div style='font-size:80px'>"+var_vidaAbajo+"</div>";
-    return 1;
-});
-document.querySelector('#boton_abajo_subir').addEventListener("click", () => {
-    var_vidaAbajo = Math.min(var_vidaAbajo+1,20);
-    vida_abajo.innerHTML = "<div style='font-size:80px'>"+var_vidaAbajo+"</div>";
-    return 1;
-});
-
 async function generarEquipo() {
     let cartasTotal = [];
     const primeraedicion = document.querySelector("#ea_primeraedicion");
@@ -568,8 +536,7 @@ function eliminarFiltros(){
 
 
 
-let hours = `00`,
-      minutes = `30`,
+let   minutes = `30`,
       seconds = `00`,
       chronometerDisplay_arriba = document.querySelector(`.cronometroarriba`),
       chronometerDisplay_abajo = document.querySelector(`.cronometroabajo`),
@@ -606,11 +573,6 @@ let hours = `00`,
   }
 
   function countdown() {
-    // Convertimos a números en caso de que sean strings con ceros al inicio
-    seconds = parseInt(seconds);
-    minutes = parseInt(minutes);
-    hours = parseInt(hours);
-  
     // Decrementamos los segundos
     seconds--;
   
@@ -694,6 +656,16 @@ function pause() {
     seconds = `00`;
 }
 
+function colornegro() {
+    const botones = document.querySelectorAll('#btn_transmutacion');
+
+    botones.forEach(boton => {
+        boton.style.backgroundColor = 'rgb(48, 48, 48)';
+    });
+
+    cerrarmenuvida();
+}
+
 function reset() {
     clearInterval(chronometerCall);
     clearInterval(preparationCall);
@@ -722,22 +694,18 @@ const vida_abajo_numero = document.querySelector("#vida_abajo_numero");
 function bajar_vida_abajo() {
     const numero = Math.max(0,Number(vida_abajo_numero.innerHTML)-1);
     vida_abajo_numero.innerHTML = numero;
-    console.log(numero)
 }
 function subir_vida_abajo() {
     const numero = Math.min(20,Number(vida_abajo_numero.innerHTML)+1);
     vida_abajo_numero.innerHTML = numero;
-    console.log(numero)
 }
 function subir_vida_arriba(){
     const numero = Math.min(20,Number(vida_arriba_numero.innerHTML)+1);
     vida_arriba_numero.innerHTML = numero;
-    console.log(numero)
 }
 function bajar_vida_arriba(){
     const numero = Math.max(0,Number(vida_arriba_numero.innerHTML)-1);
     vida_arriba_numero.innerHTML = numero;
-    console.log(numero)
 }
 function reiniciar_vida_abajo(){
     vida_abajo_numero.innerHTML = 10;
@@ -750,4 +718,12 @@ function pasaTurno(){
     if(Number(vida_abajo_numero.innerHTML) == 0) vida_abajo_numero.innerHTML = 10;
     toggleAltarOn(".baje_altar_btn_arriba");
     toggleAltarOn(".baje_altar_btn_abajo");
+}
+function cerrarmenuvida(){
+    const menu = document.querySelector(".submenuvida");
+    menu.style.display = "none";
+}
+function abrirmenuvida(){
+    const menu = document.querySelector(".submenuvida");
+    menu.style.display = "block";
 }

@@ -51,10 +51,10 @@
                 return document.querySelector("#resultado_Dado").value = "";
             }
             else {
-                document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
+                document.querySelector("#resultado_Dado").style.background = "rgb(200, 152, 244)";
                 if(val == max) document.querySelector("#resultado_Dado").style.background = "rgb(200, 244, 152)";
                 if(val == min) document.querySelector("#resultado_Dado").style.background = "rgb(244, 152, 152)";
-                return document.querySelector("#resultado_Dado").value = val;
+                return document.querySelector("#resultado_Dado").innerHTML = val;
             }
         }
         function diezArriba() {
@@ -391,7 +391,76 @@
             font-size: 38px;
             font-family: 'Tagesschrift';
         }
+        .submenuvida {
+            background-color: rgba(0,0,0,.5);
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+            position: fixed;
+            display: none;
+        }
+        .opciones{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            z-index: 10001;
+            width: 80vw;
+            height: 50vh;
+            background-color: rgba(255,255,255,1);
+            border-radius: 50px;
+        }
+        .opciones ul {
+            margin:0;
+            padding:0;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+        }
+        .opciones ul li {
+            margin:0;
+            padding:10px;
+            font-size: 22px;
+            border-bottom:2px solid black;
+            font-family: 'Tagesschrift';
+        }
+        .opciones ul li:hover {
+            margin:0;
+            padding:10px;
+            font-size: 22px;
+            border-bottom:2px solid red;
+            color:red;
+        }
+        #resultado_Dado {
+            font-size: 22px;
+            position: absolute;
+            width: 60px;             /* ancho fijo */
+            height: 60px;            /* alto fijo, igual al ancho */
+            border-radius: 50%;      /* redondo */
+            left: 50%;
+            top: 70%;
+            transform: translate(-50%, -50%);
+            color: black;
+            background-color: white; /* asegúrate de que tenga fondo visible si lo deseas */
+            z-index: 10002;
+
+            display: flex;           /* centrar el número */
+            align-items: center;
+            justify-content: center;
+        }
     </style>
+    <div class="submenuvida" onclick="cerrarmenuvida()">
+        <div class="opciones" onclick="event.stopPropagation();">
+            <ul style="list-style: none;">
+                <li class="boton" onclick="event.stopPropagation(); cerrarmenuvida()">Cerrar menú</li>
+                <li class="boton" onclick="event.stopPropagation(); moverse(0)">Volver al inicio</li>
+                <li class="boton" onclick="event.stopPropagation(); colornegro()">Reiniciar transmutaciones</li>
+                <li class="boton" onclick="event.stopPropagation(); Dado(1,20)">Lanzar dado</li>
+            </ul>
+        </div>
+        <div id="resultado_Dado"></div>
+    </div>
     <div id="contadorvida" class="bg-dark">
         <div class="transaltar-arriba">
             <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
@@ -413,8 +482,8 @@
         </div>
         <div class="vida-centro">
             <div id="turno" class="boton menu" style="left: 15%;" onclick="pasaTurno()">Turno</div>
-            <div id="inicio" class="boton menu" onclick="play()" style="left: 50%;">Inicio</div>
-            <div id="menu" class="boton menu" style="left: 85%;">Menu</div>
+            <div id="menu" onclick="abrirmenuvida()" class="boton menu" style="left: 50%;">Menu</div>
+            <div id="inicio" class="boton menu" onclick="play()" style="left: 85%;">Inicio</div>
             <div class="cronometroabajo"></div>
             <div class="cronometroarriba rotar"></div>
         </div>
@@ -435,57 +504,6 @@
             <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
             <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
             <button id="baje_altar_btn" class="baje_altar_btn_abajo" style="background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered text-dark" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title m-auto" id="exampleModalLabel"><b class="text-danger">Contador de Vida</b><br></h5>Con contador de transmutación y bajo de altar<br>Al presionar la vida, vuelve a 10
-                </div> 
-                <div class="modal-body">
-                    <div id="example" class="bg-white text-dark p-2">
-                        <div id="barra_vida_arriba">
-                            <div class="row">
-                                <div class="w-100 d-flex justify-content-around mb-3">
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="baje_altar_btn" style="width:70px; height:50px; background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
-                                </div>
-                                <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:160px" class="col-3 vida_boton">+</button>
-                                <button id="vida_arriba" onclick="diezArriba()" style="background-color: rgb(115, 117, 247); font-size:30px; height:160px; transform: rotate(180deg);" class="col-6 d-flex justify-content-center align-items-center"><div style="font-size:80px;">10</div></button>
-                                <button id="boton_arriba_bajar" style="background-color: rgb(238, 135, 135); font-size:30px; height:160px" class="col-3 vida_boton">-</button>
-                            </div>
-                        </div>
-                        <div class="roll_dice d-flex justify-content-center align-items-center" style="margin: 5px 0px">
-                            <button class="pointer" onclick="Dado(1,20)" style="width:50px; height: 50px; margin:5px; font-size:30px; border: 2px solid black">20</button>
-                            <button id="boton_play" data-chronometer class="pointer" onclick="IniciarJuego()" style="width:200px; height: 50px; margin:5px; font-size:30px; border: 2px solid black">INICIAR</button>
-                            <p id="quieninicia"></p>
-                            <input class="form-horizontal" id="resultado_Dado" style="height:50px; font-size:30px; width:50px; background-color: white;"type="text" disabled>
-                        </div>
-                        <div id="barra_vida_abajo">
-                            <div class="row">
-                                <button id="boton_abajo_bajar" style="background-color: rgb(238, 135, 135); font-size:30px; height:160px" class="col-3 vida_boton">-</button>
-                                <button id="vida_abajo" onclick="diezAbajo()" style="background-color: rgb(245, 243, 130); font-size:30px; height:160px;" class="col-6 d-flex justify-content-center align-items-center"><div style="font-size:80px">10</div></button>
-                                <button id="boton_abajo_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:160px" class="col-3 vida_boton">+</button>
-                                <div class="w-100 d-flex justify-content-around mt-3">
-                                    <button id="baje_altar_btn" style="width:70px; height:50px; background-color: rgb(127, 246, 129); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" onclick="Dado(0,0)" class="btn btn-secondary">Reiniciar</button>
-                </div>
-            </div>
         </div>
     </div>
     <div class="modal fade" id="equipoAleatorioModal" tabindex="-1" role="dialog" aria-labelledby="equipoAleatorioModal" aria-hidden="true">
@@ -883,5 +901,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<script src="./index.js"></script>
+<script src="./index.js" defer></script>
 </html>
