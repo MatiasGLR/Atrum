@@ -330,6 +330,7 @@
             top:0;
             left:0;
             z-index:0;
+            overflow: hidden;
         }
         .transaltar-abajo {
             width:100vw;
@@ -339,12 +340,14 @@
             bottom:0;
             left:0;
             z-index:0;
+            overflow: hidden;
         }
         #btn_transmutacion, #baje_altar_btn {
             width:18%;
             height:80%;
             margin:1%;
             border:none;
+            border: 1px solid white;
         }
         .vida-centro .menu {
             font-family: 'Tagesschrift';
@@ -367,48 +370,51 @@
         #baje_altar_btn {
             overflow:hidden;
         }
+        .boton {
+            cursor: pointer;
+        }
     </style>
     <div id="contadorvida" class="bg-dark">
         <div class="transaltar-arriba">
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="baje_altar_btn" style="background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="baje_altar_btn" class="baje_altar_btn_arriba" style="background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
         </div>
         <div class="vida-superior d-flex">
-            <div class="vida-boton vida-superior-subir">
+            <div class="vida-boton vida-superior-subir boton" onclick="subir_vida_arriba()">
                 
             </div>
-            <div class="vida-boton rotar">
+            <div id="vida_arriba_numero" class="vida-boton rotar boton" onclick="reiniciar_vida_arriba()">
                 10
             </div>
-            <div class="vida-boton vida-superior-bajar">
+            <div class="vida-boton vida-superior-bajar boton" onclick="bajar_vida_arriba()">
                 
             </div>
         </div>
         <div class="vida-centro">
-            <div class="menu" style="left: 15%;">Turno</div>
-            <div class="menu" style="left: 50%;">Inicio</div>
-            <div class="menu" style="left: 85%;">Menu</div>
+            <div id="turno" class="boton menu" style="left: 15%;" onclick="pasaTurno()">Turno</div>
+            <div id="inicio" class="boton menu" style="left: 50%;">Inicio</div>
+            <div id="menu" class="boton menu" style="left: 85%;">Menu</div>
         </div>
         <div class="vida-inferior d-flex">
-            <div class="vida-boton vida-inferior-bajar">
+            <div class="vida-boton vida-inferior-bajar boton" onclick="bajar_vida_abajo()">
                 
             </div>
-            <div class="vida-boton">
+            <div id="vida_abajo_numero" class="vida-boton boton" onclick="reiniciar_vida_abajo()">
                 10
             </div>
-            <div class="vida-boton vida-inferior-subir">
+            <div class="vida-boton vida-inferior-subir boton" onclick="subir_vida_abajo()">
                 
             </div>
         </div>
         <div class="transaltar-abajo rotar">
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="btn_transmutacion" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-            <button id="baje_altar_btn" style="background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="btn_transmutacion" style="background-color: rgb(48, 48, 48);" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+            <button id="baje_altar_btn" class="baje_altar_btn_abajo" style="background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
         </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -422,10 +428,10 @@
                         <div id="barra_vida_arriba">
                             <div class="row">
                                 <div class="w-100 d-flex justify-content-around mb-3">
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
                                     <button id="baje_altar_btn" style="width:70px; height:50px; background-color: rgb(127, 246, 129); transform: rotate(180deg); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
                                 </div>
                                 <button id="boton_arriba_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:160px" class="col-3 vida_boton">+</button>
@@ -446,10 +452,10 @@
                                 <button id="boton_abajo_subir" style="background-color: rgb(157, 245, 130); font-size:30px; height:160px" class="col-3 vida_boton">+</button>
                                 <div class="w-100 d-flex justify-content-around mt-3">
                                     <button id="baje_altar_btn" style="width:70px; height:50px; background-color: rgb(127, 246, 129); font-size:15px;" onclick="toggleAltar(this)">NO BAJE<br>ALTAR</button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
-                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: #303030;" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
+                                    <button id="btn_transmutacion" style="width:50px; height:50px; background-color: rgb(48, 48, 48)" ontouchstart="boton_clickeado(this)" ontouchend="boton_soltado(this)" onmousedown="boton_clickeado(this)" onmouseup="boton_soltado(this)" onclick="changeColor(this)"></button>
                                 </div>
                             </div>
                         </div>

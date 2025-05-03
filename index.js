@@ -386,6 +386,11 @@ function toggleAltar(btn) {
     }
 }
 
+function toggleAltarOn(btn) {
+    $(btn).css("background-color", "rgb(127, 246, 129)");
+    $(btn).html("NO BAJÉ ALTAR");
+}
+
 function boton_clickeado(btn) {
     if(timeoutId == null) {
         timeoutId = setTimeout(() => {
@@ -654,3 +659,38 @@ function reset() {
     diezAbajo();
 }
 
+const vida_arriba_numero = document.querySelector("#vida_arriba_numero");
+const vida_abajo_numero = document.querySelector("#vida_abajo_numero");
+
+function bajar_vida_abajo() {
+    const numero = Math.max(0,Number(vida_abajo_numero.innerHTML)-1);
+    vida_abajo_numero.innerHTML = numero;
+    console.log(numero)
+}
+function subir_vida_abajo() {
+    const numero = Math.min(20,Number(vida_abajo_numero.innerHTML)+1);
+    vida_abajo_numero.innerHTML = numero;
+    console.log(numero)
+}
+function subir_vida_arriba(){
+    const numero = Math.min(20,Number(vida_arriba_numero.innerHTML)+1);
+    vida_arriba_numero.innerHTML = numero;
+    console.log(numero)
+}
+function bajar_vida_arriba(){
+    const numero = Math.max(0,Number(vida_arriba_numero.innerHTML)-1);
+    vida_arriba_numero.innerHTML = numero;
+    console.log(numero)
+}
+function reiniciar_vida_abajo(){
+    vida_abajo_numero.innerHTML = 10;
+}
+function reiniciar_vida_arriba(){
+    vida_arriba_numero.innerHTML = 10;
+}
+function pasaTurno(){
+    if(Number(vida_arriba_numero.innerHTML) == 0) vida_arriba_numero.innerHTML = 10;
+    if(Number(vida_abajo_numero.innerHTML) == 0) vida_abajo_numero.innerHTML = 10;
+    toggleAltarOn(".baje_altar_btn_arriba");
+    toggleAltarOn(".baje_altar_btn_abajo");
+}
