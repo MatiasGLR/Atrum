@@ -727,3 +727,13 @@ function abrirmenuvida(){
     const menu = document.querySelector(".submenuvida");
     menu.style.display = "block";
 }
+function descargarAPK() {
+    const url = "./Recursos/catrum.apk";
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "catrum.apk";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
