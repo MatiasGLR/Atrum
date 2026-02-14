@@ -41,21 +41,42 @@
         function openDeidad() {
             $('#deidadesModal').modal('show');
         }
+
+        let timeoutDado, dadoBloqueado = false;
+
         function Dado(min, max) {
+            if(dadoBloqueado == true) return 0;
+
+            dadoBloqueado = true;
+
+            const resultado = document.querySelector("#resultado_Dado");
             let val = Math.round(Math.random() * (max - min) + min);
-            document.querySelector("#resultado_Dado").style.background = "white";
-            document.querySelector("#resultado_Dado").style.color = "black";
+
+            resultado.style.background = "rgba(255,255,255,0)";
+            resultado.style.color = "black";
+
             if(min == max && min == 0){
                 reset();
-                document.querySelector("#resultado_Dado").style.background = "#FFFFFF";
-                return document.querySelector("#resultado_Dado").value = "";
+                resultado.style.background = "rgba(255,255,255,0)";
+                resultado.value = "";
+                return 1;
             }
             else {
-                document.querySelector("#resultado_Dado").style.background = "rgb(200, 152, 244)";
-                if(val == max) document.querySelector("#resultado_Dado").style.background = "rgb(200, 244, 152)";
-                if(val == min) document.querySelector("#resultado_Dado").style.background = "rgb(244, 152, 152)";
-                return document.querySelector("#resultado_Dado").innerHTML = val;
+                resultado.style.background = "rgb(200, 152, 244)";
+                if(val == max) resultado.style.background = "rgb(200, 244, 152)";
+                if(val == min) resultado.style.background = "rgb(244, 152, 152)";
+                resultado.innerHTML = val;
             }
+
+            clearTimeout(timeoutDado);
+
+            timeoutDado = setTimeout(() => {
+                resultado.style.background = "rgba(255,255,255,0)";
+                resultado.style.color = "black";
+                resultado.innerHTML = "";
+                dadoBloqueado = false;
+            }, 2000);
+            return 1;
         }
         function diezArriba() {
             var_vidaArriba = 10;
